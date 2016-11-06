@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BibleTree.Models;
+
 
 namespace BibleTree.Controllers
 {
@@ -11,17 +13,31 @@ namespace BibleTree.Controllers
         // GET: Badges
         public ActionResult BadgeCreate()
         {
-            return View();
+            BadgeType badge = new BadgeType();
+
+            return View(badge);
         }
 
-        public ActionResult BadgeEdit()
+        public ActionResult BadgeEdit(int Id)
         {
-            return View();
+            // Database call to get one with id
+            BadgeType badge = new BadgeType();
+            badge.Description = "Testing Description";
+            badge.Name = "Badge Name";
+            badge.Id_Num= 1;
+
+            return View(badge);
         }
         
         public ActionResult BadgeView()
         {
-            return View();
+            // Database call to get one with id
+            BadgeType badge = new BadgeType();
+            badge.Description = "Testing Description";
+            badge.Name = "Badge Name";
+            badge.Id_Num = 1;
+
+            return View(badge);
         }
     }
 }

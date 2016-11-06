@@ -9,13 +9,19 @@ namespace BibleTree.Models
     {
         public enum Badge_Level { CORE, COMPETENCY, COMMENDATION }
 
-        public string name { get; set; }
+        public string Name { get; set; }
+
         public string png_url { get; set; }
+
         public string gif_url { get; set; }
-        public string description { get; set; }
-        public long unique_id { get; set; }
-        public BadgeAvailability availability { get; set; }
-        public Badge_Level badge_level { get; set; }
+
+        public string Description { get; set; }
+
+        public long Id_Num { get; set; }
+
+        public BadgeAvailability Availability { get; set; }
+
+        public Badge_Level Badge_level { get; set; }
 
     }
 }
