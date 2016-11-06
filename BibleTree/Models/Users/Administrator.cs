@@ -7,7 +7,7 @@ using System.ComponentModel;
 namespace BibleTree.Models
 {
 	[Serializable, DisplayName("Administrator")]
-    public class Administration : UserTemplate
+    public class Administrator : User
     {
 		[DisplayName("Administrative Permissions Level")] public string permissions_level { get; set; }
     }

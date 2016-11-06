@@ -7,7 +7,7 @@ using System.ComponentModel;
 namespace BibleTree.Models
 {
 	[Serializable, DisplayName("Student")]
-    public class Student : UserTemplate
+    public class Student : User
     {
 		[DisplayName("Student ID")] public long student_id {get; set;}
 		[DisplayName("Enrollment Date")] public DateTime enrolment_date {get; set;}
