@@ -22,9 +22,9 @@ namespace BibleTree.Controllers
         {
             // Database call to get one with id
             BadgeType badge = new BadgeType();
-            badge.Description = "Testing Description";
-            badge.Name = "Badge Name";
-            badge.Id_Num= 1;
+            badge.description = "Testing Description";
+            badge.name = "Badge Name";
+            badge.unique_id= 1;
 
             return View(badge);
         }
@@ -33,9 +33,9 @@ namespace BibleTree.Controllers
         {
             // Database call to get one with id
             BadgeType badge = new BadgeType();
-            badge.Description = "Testing Description";
-            badge.Name = "Badge Name";
-            badge.Id_Num = 1;
+            badge.description = "Testing Description";
+            badge.name = "Badge Name";
+            badge.unique_id = 1;
 
             return View(badge);
         }
