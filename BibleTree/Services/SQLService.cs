@@ -5,7 +5,6 @@ using Dapper;
 using System.Data;
 using System.Data.SqlClient;
 using BibleTree.Models;
-using Dapper.Contrib.Extensions;
 
 namespace BibleTree.Services {
 	public class SQLService {
@@ -183,7 +182,7 @@ namespace BibleTree.Services {
 		 * =======================================
 		 *     Badge Operations
 		 */
-		public void AddBadge(Badge badge) {
+		public void AddBadge(BadgeType badge) {
 			using (var db = connect()) {
 				const string sql = @"INSERT INTO Badge
                                          VALUES badge_id = @id
@@ -197,7 +196,7 @@ namespace BibleTree.Services {
 				db.Execute(sql, badge);
 			}
 		}
-		public void UpdateBadge(Badge badge) {
+		public void UpdateBadge(BadgeType badge) {
 			using (var db = connect()) {
 				const string sql = @"UPDATE Badge
 										SET badge_id = @id
@@ -212,14 +211,14 @@ namespace BibleTree.Services {
 				db.Execute(sql, badge);
 			}
 		}
-		public List<Badge> GetBadges() {
+		public List<BadgeType> GetBadges() {
 			using (var db = connect()) {
-				return db.GetAll<Badge>().AsList();
+				return db.GetAll<BadgeType>().AsList();
 			}
 		}
-		public Badge GetBadgeById(int user_id) {
+		public BadgeType GetBadgeById(int user_id) {
 			using (var db = connect()) {
-				return db.Get<Badge>(user_id);
+				return db.Get<BadgeType>(user_id);
 			}
 		}
 
@@ -227,12 +226,12 @@ namespace BibleTree.Services {
 		 * =======================================
 		 *     AwardedBadge Operations
 		 */
-		public List<AwardedBadge> GetUserAwards(int user_id) {
+		public List<BadgeInstance> GetUserAwards(int user_id) {
 			using (var db = connect()) {
 				const string sql = @"SELECT AwardedBadge.*, Badge.* 
 										FROM AwardedBadge, Badge 
 										WHERE AwardedBadge.user_id = @user_id";
-				return db.Query<AwardedBadge, Badge, AwardedBadge>(sql,
+				return db.Query<BadgeInstance, BadgeType, BadgeInstance>(sql,
 					(a, b) => {
 						a.badge = b;
 						return a;
@@ -241,7 +240,7 @@ namespace BibleTree.Services {
 				).AsList();
 			}
 		}
-		public void AssignAward(AwardedBadge awardedbadge) {
+		public void AssignAward(BadgeInstance awardedbadge) {
 			using (var db = connect()) {
 				const string sql = @"INSERT INTO AwardedBadge
 										(User_id, Badge_id, Award_sentId, Award_date, Award_comment)
@@ -253,7 +252,7 @@ namespace BibleTree.Services {
 				db.Execute(sql, awardedbadge);
 			}
 		}
-		public void RevokeAward(AwardedBadge awardedbadge) {
+		public void RevokeAward(BadgeInstance awardedbadge) {
 			using (var db = connect()) {
 				const string sql = @"DELETE FROM AwardedBadge
 									WHERE AwardedBadge.user_id = @user_id

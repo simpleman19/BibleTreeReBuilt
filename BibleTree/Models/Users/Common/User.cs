@@ -7,12 +7,12 @@ using System.ComponentModel;
 namespace BibleTree.Models
 {
 	[Serializable]
-    public class UserTemplate
+    public class User
     {
-		[DisplayName("User Name")] public string name { get; set; };
-		[DisplayName("Email")] public string email { get; set; };
-		[NonSerialized] public string token { get; set; };
-		public long unique_id { get; set; };
+		[DisplayName("User Name")] public string name { get; set; }
+		[DisplayName("Email")] public string email { get; set; }
+        public string token { get; set; }
+		public long unique_id { get; set; }
 		
 		/*
 		By design these should be here.
