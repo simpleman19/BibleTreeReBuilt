@@ -39,5 +39,9 @@ namespace BibleTree.Controllers
 
             return View(badge);
         }
+        public ActionResult SendBadge()
+        {
+            return View();
+        }
     }
 }

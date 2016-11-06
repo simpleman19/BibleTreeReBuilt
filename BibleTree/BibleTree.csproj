@@ -213,15 +213,11 @@
     <Compile Include="Models\Badges\BadgeType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="Models\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="Models\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Models\Users\Administrator.cs" />
     <Compile Include="Models\Users\Common\User.cs" />
     <Compile Include="Models\Users\Faculty.cs" />
     <Compile Include="Models\Users\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\SQLService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -300,9 +296,12 @@
     <Content Include="Views\Badges\BadgeView.cshtml" />
     <Content Include="Views\User\UserHome.cshtml" />
     <Content Include="Views\Home.cshtml" />
+    <Content Include="Views\Badges\SendBadge.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\obj\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
