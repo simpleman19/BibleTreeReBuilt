@@ -15,7 +15,7 @@ namespace BibleTree.Models
 		[DisplayName("PNG URL")] public string png_url { get; set; }
 		[DisplayName("GIF URL")] public string gif_url { get; set; }
 		[DisplayName("Description")] public string description { get; set; }
-		public long unique_id { get; set; }
+        [DisplayName("ID Number")] public long unique_id { get; set; }
 		[DisplayName("Availability")] public BadgeAvailability availability { get; set; }
 		[DisplayName("Badge Level")] public Badge_Level badge_level { get; set; }
 
