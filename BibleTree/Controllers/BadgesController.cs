@@ -39,5 +39,20 @@ namespace BibleTree.Controllers
 
             return View(badge);
         }
+        public ActionResult SendBadge()
+        {
+            return View();
+        }
+
+        public ActionResult BadgeList()
+        {
+            var badgeList = new List<BadgeType>{
+                            new BadgeType() { name = "Test Badge 1", description = "Just first test badge", unique_id = 1 } ,
+                            new BadgeType() { name = "Test Badge 2", description = "Second test badge" ,  unique_id = 2 } ,
+                            new BadgeType() { name = "Test Badge 3", description = "Third test badge", unique_id = 3} ,
+                            new BadgeType() { name = "Test Badge 4", description = "Another stupid test badge", unique_id = 4} ,
+                        };
+            return View(badgeList);
+        }
     }
 }
