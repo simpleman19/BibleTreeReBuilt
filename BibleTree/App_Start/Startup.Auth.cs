@@ -58,11 +58,11 @@ namespace BibleTree
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "293288067002-s48t2ojh0d6ctik84f696bkv44cisfl1.apps.googleusercontent.com",
+                ClientSecret = "GjhYJ9lf-Kq6kgBCorEvURQb"
+            });
         }
     }
 }
