@@ -25,6 +25,9 @@ namespace BibleTree.Controllers
             badge.description = "Testing Description";
             badge.name = "Badge Name";
             badge.unique_id= 1;
+            badge.availability = new BadgeAvailability();
+            badge.availability.start_availability_date = new DateTime(2016, 10, 4);
+            badge.availability.end_availability_date = new DateTime(2016, 10, 20);
 
             return View(badge);
         }
@@ -36,7 +39,9 @@ namespace BibleTree.Controllers
             badge.description = "Testing Description";
             badge.name = "Badge Name";
             badge.unique_id = 1;
-
+            badge.availability = new BadgeAvailability();
+            badge.availability.start_availability_date = new DateTime(2016,10,4);
+            badge.availability.end_availability_date = new DateTime(2016, 10, 20);
             return View(badge);
         }
         public ActionResult SendBadge()
