@@ -13,6 +13,13 @@ namespace BibleTree.Models
 		[DisplayName("Email")] public string email { get; set; }
         public string token { get; set; }
 		public long unique_id { get; set; }
+
+	    public void mapUser(User u) {
+		    this.name = u.name;
+		    this.email = u.email;
+		    this.token = u.token;
+		    this.unique_id = u.unique_id;
+	    }
 		
 		/*
 		By design these should be here.

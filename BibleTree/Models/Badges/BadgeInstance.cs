@@ -14,5 +14,7 @@ namespace BibleTree.Models
 		[DisplayName("Recipient ID")] public long recipient_id { get; set; }
 		[DisplayName("Sender ID")] public long sender_id { get; set; }
 		[DisplayName("Badge ID")] public long badge_id { get; set; }
+
+		public BadgeType badge_type { get; set; }
     }
 }
