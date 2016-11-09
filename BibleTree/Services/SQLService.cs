@@ -10,6 +10,11 @@ using BibleTree.Models;
 namespace BibleTree.Services {
 	public class SQLService {
 
+		/*
+		 * =======================================
+		 *     Primary Database Handling
+		 */
+		#region Connection
 		private readonly string _connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=BibleTree;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 		private readonly string _noDatabaseConnection = @"Data Source=.\SQLEXPRESS;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 		private IDbConnection connect() => new SqlConnection(_connectionString);
@@ -18,12 +23,16 @@ namespace BibleTree.Services {
 		public SQLService(string connectionString) {
 			_connectionString = connectionString;
 		}
+		#endregion
+
+
 		public SQLService() {}
 
 		/*
 		 * =======================================
 		 *     Database Operations
 		 */
+		#region Database Operations
 		public string Rebuild() {
 			//Resets entire database with fresh empty model
 			Drop();
@@ -40,11 +49,13 @@ namespace BibleTree.Services {
 				db.Execute(ScriptService.Scripts["database_create"]);
 			}
 		}
+		#endregion
 
 		/*
 		 * =======================================
 		 *     User Operations
 		 */
+		#region User Operations
 		public User GetUserById(int user_id) {
 			//throw new NotImplementedException();
 			using (var db = connect()) {
@@ -58,19 +69,21 @@ namespace BibleTree.Services {
 		}
 		public void AddUser(User user) {
 			using (var db = connect()) {
-				throw new NotImplementedException();
+				db.Execute(ScriptService.Scripts["user_insert"], user);
 			}
 		}
 		public void UpdateUser(User user) {
 			using (var db = connect()) {
-				throw new NotImplementedException();
+				db.Execute(ScriptService.Scripts["user_update"], user);
 			}
 		}
+		#endregion
 
 		/*
 		 * =======================================
 		 *     Student Operations
 		 */
+		#region Student Operations
 		public Student GetStudentById(int user_id) {
 			using (var db = connect()) {
 				return db.Query<Student, User, Student>(ScriptService.Scripts["student_getbyid"],
@@ -104,11 +117,13 @@ namespace BibleTree.Services {
 				throw new NotImplementedException();
 			}
 		}
+		#endregion
 
 		/*
 		 * =======================================
 		 *     Administrator Operations
 		 */
+		#region Administrator Operations
 		public Administrator GetAdministratorById(int user_id) {
 			using (var db = connect()) {
 				return db.Query<Administrator, User, Administrator>(ScriptService.Scripts["administrator_getbyid"],
@@ -142,11 +157,13 @@ namespace BibleTree.Services {
 				throw new NotImplementedException();
 			}
 		}
+		#endregion
 
 		/*
 		 * =======================================
 		 *     Faculty Operations
 		 */
+		#region Faculty Operations
 		public Faculty GetFacultyById(int user_id) {
 			using (var db = connect()) {
 				return db.Query<Faculty, User, Faculty>(ScriptService.Scripts["faculty_getbyid"],
@@ -180,11 +197,14 @@ namespace BibleTree.Services {
 				throw new NotImplementedException();
 			}
 		}
+		#endregion
 
 		/*
 		 * =======================================
 		 *     Badge Operations
 		 */
+		#region Badge Operations
+
 		public void AddBadge(BadgeType badge) {
 			using (var db = connect()) {
 				db.Execute(ScriptService.Scripts["badge_insert"], badge);
@@ -205,21 +225,17 @@ namespace BibleTree.Services {
 				return db.Get<BadgeType>(badge_id);
 			}
 		}
-
+		#endregion
 
 		/*
 		 * =======================================
 		 *     AwardedBadge Operations
 		 */
-
 		#region AwardedBadge Operations
 
 		public List<BadgeInstance> GetUserAwards(int user_id) {
 			using (var db = connect()) {
-				const string sql = @"SELECT AwardedBadge.*, Badge.* 
-									FROM AwardedBadge, Badge 
-									WHERE AwardedBadge.user_id = @user_id";
-				return db.Query<BadgeInstance, BadgeType, BadgeInstance>(sql,
+				return db.Query<BadgeInstance, BadgeType, BadgeInstance>(ScriptService.Scripts["awardedbadge_getbyuserid"],
 					(a, b) => {
 						a.badge_type = b;
 						return a;
@@ -230,22 +246,12 @@ namespace BibleTree.Services {
 		}
 		public void AssignAward(BadgeInstance awardedbadge) {
 			using (var db = connect()) {
-				const string sql = @"INSERT INTO AwardedBadge
-										(User_id, Badge_id, Award_sentId, Award_date, Award_comment)
-									VALUES @user_id,
-										@badge_id,
-										@award_sentid,
-										@award_date,
-										@award_comment";
-				db.Execute(sql, awardedbadge);
+				db.Execute(ScriptService.Scripts["awardedbadge_insert"], awardedbadge);
 			}
 		}
 		public void RevokeAward(BadgeInstance awardedbadge) {
 			using (var db = connect()) {
-				const string sql = @"DELETE FROM AwardedBadge
-									WHERE AwardedBadge.user_id = @user_id
-									AND AwardedBadge.badge_id = @badge_id";
-				db.Execute(sql, awardedbadge);
+				db.Execute(ScriptService.Scripts["awardedbadge_delete"], awardedbadge);
 			}
 		}
 		#endregion

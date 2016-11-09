@@ -286,6 +286,7 @@
     <Content Include="Services\SQL\Student_GetById.sql" />
     <Content Include="Services\SQL\Database_Create.sql" />
     <Content Include="Services\SQL\Database_Drop.sql" />
+    <Content Include="Services\SQL\AwardedBadge_GetByUserId.sql" />
     <Content Include="Services\SQL\User_Update.sql" />
     <Content Include="Services\SQL\User_Insert.sql" />
     <Content Include="Services\SQL\User_GetAll.sql" />
