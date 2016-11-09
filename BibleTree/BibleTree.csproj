@@ -280,22 +280,16 @@
     <Content Include="Services\SQL\Administrator_Update.sql" />
     <Content Include="Services\SQL\Administrator_Insert.sql" />
     <Content Include="Services\SQL\Administrator_GetById.sql" />
-    <Content Include="Services\SQL\AwardedBadge_Create.sql" />
     <Content Include="Services\SQL\Student_Update.sql" />
     <Content Include="Services\SQL\Student_Insert.sql" />
     <Content Include="Services\SQL\Student_GetAll.sql" />
     <Content Include="Services\SQL\Student_GetById.sql" />
-    <Content Include="Services\SQL\Badge_Create.sql" />
-    <Content Include="Services\SQL\Administrator_Create.sql" />
     <Content Include="Services\SQL\Database_Create.sql" />
     <Content Include="Services\SQL\Database_Drop.sql" />
-    <Content Include="Services\SQL\Faculty_Create.sql" />
-    <Content Include="Services\SQL\Student_Create.sql" />
     <Content Include="Services\SQL\User_Update.sql" />
     <Content Include="Services\SQL\User_Insert.sql" />
     <Content Include="Services\SQL\User_GetAll.sql" />
     <Content Include="Services\SQL\User_GetById.sql" />
-    <Content Include="Services\SQL\User_Create.sql" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

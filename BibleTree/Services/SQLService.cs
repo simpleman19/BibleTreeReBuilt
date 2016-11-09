@@ -28,7 +28,6 @@ namespace BibleTree.Services {
 			//Resets entire database with fresh empty model
 			Drop();
 			Create();
-			Build();
 			return "success";
 		}
 		public void Drop() {
@@ -39,16 +38,6 @@ namespace BibleTree.Services {
 		public void Create() {
 			using (var db = noDatabaseConnect()) {
 				db.Execute(ScriptService.Scripts["database_create"]);
-			}
-		}
-		public void Build() {
-			using (var db = connect()) {
-				db.Execute(ScriptService.Scripts["user_create"]);
-				db.Execute(ScriptService.Scripts["student_create"]);
-				db.Execute(ScriptService.Scripts["faculty_create"]);
-				db.Execute(ScriptService.Scripts["administrator_create"]);
-				db.Execute(ScriptService.Scripts["badge_create"]);
-				db.Execute(ScriptService.Scripts["awardedbadge_create"]);
 			}
 		}
 
@@ -84,31 +73,24 @@ namespace BibleTree.Services {
 		 */
 		public Student GetStudentById(int user_id) {
 			using (var db = connect()) {
-				const string sql = @"SELECT Student.*, User.* 
-										FROM Student, User 
-										WHERE Student.user_id = User.user_id 
-										AND User.user_id = @User_id";
-				return db.Query<Student, User, Student>(sql,
+				return db.Query<Student, User, Student>(ScriptService.Scripts["student_getbyid"],
 					(s, u) => {
 						s.mapUser(u);
 						return s;
 					},
 					new { User_id = user_id },
-					splitOn: "User_id"
+					splitOn: "user_id"
 				).FirstOrDefault();
 			}
 		}
 		public List<Student> GetStudents() {
 			using (var db = connect()) {
-				const string sql = @"SELECT Student.*, User.* 
-									FROM Student, User 
-									WHERE Student.user_id = User.user_id";
-				return db.Query<Student, User, Student>(sql,
+				return db.Query<Student, User, Student>(ScriptService.Scripts["student_getall"],
 					(s, u) => {
 						s.mapUser(u);
 						return s;
 					},
-					splitOn: "User_id"
+					splitOn: "user_id"
 				).AsList();
 			}
 		}
@@ -129,31 +111,24 @@ namespace BibleTree.Services {
 		 */
 		public Administrator GetAdministratorById(int user_id) {
 			using (var db = connect()) {
-				const string sql = @"SELECT Administrator.*, User.* 
-									FROM Administrator, User 
-									WHERE Administrator.user_id = User.user_id 
-									AND User.user_id = @User_id";
-				return db.Query<Administrator, User, Administrator>(sql,
+				return db.Query<Administrator, User, Administrator>(ScriptService.Scripts["administrator_getbyid"],
 					(a, u) => {
 						a.mapUser(u);
 						return a;
 					},
 					new { User_id = user_id },
-					splitOn: "User_id"
+					splitOn: "user_id"
 				).FirstOrDefault();
 			}
 		}
 		public List<Administrator> GetAdministrators() {
 			using (var db = connect()) {
-				const string sql = @"SELECT Administrator.*, User.* 
-									FROM Administrator, User 
-									WHERE Administrator.user_id = User.user_id";
-				return db.Query<Administrator, User, Administrator>(sql,
+				return db.Query<Administrator, User, Administrator>(ScriptService.Scripts["administrator_getall"],
 					(a, u) => {
 						a.mapUser(u);
 						return a;
 					},
-					splitOn: "User_id"
+					splitOn: "user_id"
 				).AsList();
 			}
 		}
@@ -174,31 +149,24 @@ namespace BibleTree.Services {
 		 */
 		public Faculty GetFacultyById(int user_id) {
 			using (var db = connect()) {
-				const string sql = @"SELECT Faculty.*, User.* 
-									FROM Faculty, User 
-									WHERE Faculty.user_id = User.user_id 
-									AND User.user_id = @User_id";
-				return db.Query<Faculty, User, Faculty>(sql,
+				return db.Query<Faculty, User, Faculty>(ScriptService.Scripts["faculty_getbyid"],
 					(f, u) => {
 						f.mapUser(u);
 						return f;
 					},
 					new { User_id = user_id },
-					splitOn: "User_id"
+					splitOn: "user_id"
 				).FirstOrDefault();
 			}
 		}
 		public List<Faculty> GetFaculty() {
 			using (var db = connect()) {
-				const string sql = @"SELECT Faculty.*, User.* 
-										FROM Faculty, User 
-										WHERE Faculty.user_id = User.user_id";
-				return db.Query<Faculty, User, Faculty>(sql,
+				return db.Query<Faculty, User, Faculty>(ScriptService.Scripts["faculty_getall"],
 					(f, u) => {
 						f.mapUser(u);
 						return f;
 					},
-					splitOn: "User_id"
+					splitOn: "user_id"
 				).AsList();
 			}
 		}
@@ -219,31 +187,12 @@ namespace BibleTree.Services {
 		 */
 		public void AddBadge(BadgeType badge) {
 			using (var db = connect()) {
-				const string sql = @"INSERT INTO Badge
-									VALUES badge_id = @id
-										,badge_name = @name
-										,badge_description = @description
-										,badge_level = @level
-										,badge_activeDate = @activeDate
-										,badge_expirationDate = @expirationDate
-										,badge_gifURL = @gifURL
-										,badge_pngURL = @pngURL";
-				db.Execute(sql, badge);
+				db.Execute(ScriptService.Scripts["badge_insert"], badge);
 			}
 		}
 		public void UpdateBadge(BadgeType badge) {
 			using (var db = connect()) {
-				const string sql = @"UPDATE Badge
-									SET badge_id = @id
-                                        ,badge_name = @name
-                                        ,badge_description = @description
-                                        ,badge_level = @level
-                                        ,badge_activeDate = @activeDate
-										,badge_expirationDate = @expirationDate
-										,badge_gifURL = @gifURL
-										,badge_pngURL = @pngURL
-                                    WHERE badge_id = @id";
-				db.Execute(sql, badge);
+				db.Execute(ScriptService.Scripts["badge_update"], badge);
 			}
 		}
 		public List<BadgeType> GetBadges() {
@@ -251,9 +200,9 @@ namespace BibleTree.Services {
 				return db.GetAll<BadgeType>().AsList();
 			}
 		}
-		public BadgeType GetBadgeById(int user_id) {
+		public BadgeType GetBadgeById(int badge_id) {
 			using (var db = connect()) {
-				return db.Get<BadgeType>(user_id);
+				return db.Get<BadgeType>(badge_id);
 			}
 		}
 
