@@ -5,6 +5,7 @@ using Dapper;
 using Dapper.Contrib.Extensions;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 using BibleTree.Models;
 
 namespace BibleTree.Services {
@@ -17,8 +18,11 @@ namespace BibleTree.Services {
 		#region Connection
 		private readonly string _connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=BibleTree;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 		private readonly string _noDatabaseConnection = @"Data Source=.\SQLEXPRESS;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
 		private IDbConnection connect() => new SqlConnection(_connectionString);
+
 		private IDbConnection noDatabaseConnect() => new SqlConnection(_noDatabaseConnection);
+
 
 		public SQLService(string connectionString) {
 			_connectionString = connectionString;
@@ -46,7 +50,17 @@ namespace BibleTree.Services {
 		}
 		public void Create() {
 			using (var db = noDatabaseConnect()) {
-				db.Execute(ScriptService.Scripts["database_create"]);
+				List<string> commands = Regex.Split(ScriptService.Scripts["database_create"], @"^\s*GO\s*$",
+						   RegexOptions.Multiline | RegexOptions.IgnoreCase).ToList();
+				db.Open();
+				foreach (string command in commands) {
+					if (command.Trim() != "") {
+						using (var com = new SqlCommand(command, (SqlConnection)db)) {
+							com.ExecuteNonQuery();
+						}
+					}
+				}
+				db.Close();
 			}
 		}
 		#endregion
@@ -64,7 +78,8 @@ namespace BibleTree.Services {
 		}
 		public List<User> GetUsers() {
 			using (var db = connect()) {
-				return db.GetAll<User>().AsList();
+				//return db.GetAll<User>().AsList();
+				return db.Query<User>(ScriptService.Scripts["user_getall"]).AsList();
 			}
 		}
 		public void AddUser(User user) {

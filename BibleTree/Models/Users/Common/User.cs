@@ -1,24 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel;
+using Dapper.Contrib.Extensions;
 
 namespace BibleTree.Models
 {
 	[Serializable]
     public class User
     {
-		[DisplayName("User Name")] public string name { get; set; }
+		[DisplayName("User Name")] public string user_name { get; set; }
+
 		[DisplayName("Email")] public string email { get; set; }
+
         public string token { get; set; }
-		public long unique_id { get; set; }
+
+		[Key] public long user_id { get; set; }
 
 	    public void mapUser(User u) {
-		    this.name = u.name;
+		    this.user_name = u.user_name;
 		    this.email = u.email;
 		    this.token = u.token;
-		    this.unique_id = u.unique_id;
+		    this.user_id = u.user_id;
 	    }
 		
 		/*

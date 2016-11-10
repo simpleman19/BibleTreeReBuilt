@@ -31,5 +31,14 @@ namespace BibleTree.Controllers
 			}
 			return debug;
 		}
+
+	    public string Users() {
+			string debug = "";
+		    SQLService sql = new SQLService();
+			foreach (var user in sql.GetUsers()) {
+				debug += user.user_id + ": " + user.user_name + "<br/>";
+			}
+			return debug;
+		}
     }
 }
