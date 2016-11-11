@@ -1,1 +1,1 @@
-﻿DELETE [BibleTree].[dbo].[administrator]
+﻿

@@ -41,6 +41,7 @@ namespace BibleTree.Services {
 			//Resets entire database with fresh empty model
 			Drop();
 			Create();
+			AddFaculty(new Faculty() { user_id = 1, user_email = "test@gmail.com", user_token = "", user_name = "test human", user_type ='f', faculty_department = "testing", faculty_position = "tester" });
 			return "success";
 		}
 		public void Drop() {
@@ -50,17 +51,7 @@ namespace BibleTree.Services {
 		}
 		public void Create() {
 			using (var db = noDatabaseConnect()) {
-				List<string> commands = Regex.Split(ScriptService.Scripts["database_create"], @"^\s*GO\s*$",
-						   RegexOptions.Multiline | RegexOptions.IgnoreCase).ToList();
-				db.Open();
-				foreach (string command in commands) {
-					if (command.Trim() != "") {
-						using (var com = new SqlCommand(command, (SqlConnection)db)) {
-							com.ExecuteNonQuery();
-						}
-					}
-				}
-				db.Close();
+				ScriptService.Execute(db,"database_create");
 			}
 		}
 		#endregion
@@ -124,7 +115,7 @@ namespace BibleTree.Services {
 		}
 		public void AddStudent(Student student) {
 			using (var db = connect()) {
-				throw new NotImplementedException();
+				ScriptService.Execute(db, "student_insert", student);
 			}
 		}
 		public void UpdateStudent(Student student) {
@@ -164,7 +155,7 @@ namespace BibleTree.Services {
 		}
 		public void AddAdministrator(Administrator administrator) {
 			using (var db = connect()) {
-				throw new NotImplementedException();
+				ScriptService.Execute(db, "administrator_insert", administrator);
 			}
 		}
 		public void UpdateAdministrator(Administrator administrator) {
@@ -204,7 +195,7 @@ namespace BibleTree.Services {
 		}
 		public void AddFaculty(Faculty faculty) {
 			using (var db = connect()) {
-				throw new NotImplementedException();
+				ScriptService.Execute(db, "faculty_insert", faculty);
 			}
 		}
 		public void UpdateFaculty(Faculty faculty) {

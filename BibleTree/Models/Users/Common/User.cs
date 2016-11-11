@@ -9,16 +9,18 @@ namespace BibleTree.Models
     {
 		[DisplayName("User Name")] public string user_name { get; set; }
 
-		[DisplayName("Email")] public string email { get; set; }
+		[DisplayName("Email")] public string user_email { get; set; }
 
-        public string token { get; set; }
+        public string user_token { get; set; }
 
 		[Key] public long user_id { get; set; }
 
+	    public char user_type { get; set; }
+
 	    public void mapUser(User u) {
 		    this.user_name = u.user_name;
-		    this.email = u.email;
-		    this.token = u.token;
+		    this.user_email = u.user_email;
+		    this.user_token = u.user_token;
 		    this.user_id = u.user_id;
 	    }
 		
