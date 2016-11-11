@@ -24,8 +24,24 @@ VALUES
 )
 SET IDENTITY_INSERT [BibleTree].[dbo].[user] OFF
 END
+
+ELSE
+
+BEGIN
+UPDATE [BibleTree].[dbo].[user]
+SET
+	[user_type] = 'a'
+WHERE [user].[user_id] = @user_id
+END
 GO
 
+IF NOT EXISTS 
+( 
+	SELECT 1 
+	FROM [BibleTree].[dbo].[administrator] 
+	WHERE [user_id] = @user_id 
+)
+BEGIN
 INSERT INTO [BibleTree].[dbo].[administrator]
 (
 	[user_id],
@@ -36,4 +52,5 @@ VALUES
 	@user_id,
 	@administrator_permLevel
 )
+END
 GO

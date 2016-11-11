@@ -19,14 +19,15 @@ namespace BibleTree.Models
 	    public char user_type { get; set; }
 
 	    public void mapUser(User u) {
-		    this.user_name = u.user_name;
-		    this.user_email = u.user_email;
-		    this.user_token = u.user_token;
-		    this.user_id = u.user_id;
+		    user_name = u.user_name;
+		    user_email = u.user_email;
+		    user_token = u.user_token;
+		    user_id = u.user_id;
+			user_type = u.user_type;
 	    }
 
 	    public override string ToString() {
-		    return "{ user_id:'" + user_id + "' user_name:'" + user_name + "' user_email:'" + user_email + "' user_token:'" + user_token + "' user_type:'" + user_type + "'}";
+		    return "{ user_id:'" + user_id + "' user_name:'" + user_name + "' user_email:'" + user_email + "' user_token:'" + user_token + "' user_type:'" + user_type.ToString() + "'}";
 	    }
 
 	    /*

@@ -72,9 +72,14 @@ namespace BibleTree.Services {
 				return db.Query<User>(ScriptService.Scripts["user_getall"]).AsList();
 			}
 		}
-		public void AddUser(User user) {
+		public void AddUserWithId(User user) {
 			using (var db = connect()) {
-				db.Execute(ScriptService.Scripts["user_insert"], user);
+				db.Execute(ScriptService.Scripts["user_insertwithid"], user);
+			}
+		}
+		public void AddUserWithoutId(User user) {
+			using (var db = connect()) {
+				db.Execute(ScriptService.Scripts["user_insertwithoutid"], user);
 			}
 		}
 		public void UpdateUser(User user) {

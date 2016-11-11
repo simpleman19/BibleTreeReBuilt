@@ -207,7 +207,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BadgesController.cs" />
-    <Compile Include="Controllers\DebugController.cs" />
+    <Compile Include="Controllers\TestingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -300,8 +300,9 @@
     <Content Include="Services\SQL\AwardedBadge_GetByUserId.sql" />
     <Content Include="Services\SQL\User_GetByEmail.sql" />
     <Content Include="Services\SQL\User_GetByName.sql" />
+    <Content Include="Services\SQL\User_InsertWithoutId.sql" />
     <Content Include="Services\SQL\User_Update.sql" />
-    <Content Include="Services\SQL\User_Insert.sql" />
+    <Content Include="Services\SQL\User_InsertWithId.sql" />
     <Content Include="Services\SQL\User_GetAll.sql" />
     <Content Include="Services\SQL\User_GetById.sql" />
     <Content Include="Web.config" />
@@ -345,13 +346,13 @@
     <Content Include="Views\Home.cshtml" />
     <Content Include="Views\Badges\SendBadge.cshtml" />
     <Content Include="Views\Badges\BadgeList.cshtml" />
-    <Content Include="Views\Debug\Index.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Testing\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\obj\" />
+    <Folder Include="Models\Badges\obj\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
