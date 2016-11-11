@@ -5,6 +5,7 @@ using Dapper;
 using Dapper.Contrib.Extensions;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 using BibleTree.Models;
 
 namespace BibleTree.Services {
@@ -17,8 +18,11 @@ namespace BibleTree.Services {
 		#region Connection
 		private readonly string _connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=BibleTree;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 		private readonly string _noDatabaseConnection = @"Data Source=.\SQLEXPRESS;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
 		private IDbConnection connect() => new SqlConnection(_connectionString);
+
 		private IDbConnection noDatabaseConnect() => new SqlConnection(_noDatabaseConnection);
+
 
 		public SQLService(string connectionString) {
 			_connectionString = connectionString;
@@ -46,7 +50,7 @@ namespace BibleTree.Services {
 		}
 		public void Create() {
 			using (var db = noDatabaseConnect()) {
-				db.Execute(ScriptService.Scripts["database_create"]);
+				ScriptService.Execute(db,"database_create");
 			}
 		}
 		#endregion
@@ -59,12 +63,13 @@ namespace BibleTree.Services {
 		public User GetUserById(int user_id) {
 			//throw new NotImplementedException();
 			using (var db = connect()) {
-				return db.Get<User>(user_id);
+				return db.Query<User>(ScriptService.Scripts["user_getbyid"], new {user_id = user_id}).FirstOrDefault();
 			}
 		}
 		public List<User> GetUsers() {
 			using (var db = connect()) {
-				return db.GetAll<User>().AsList();
+				//return db.GetAll<User>().AsList();
+				return db.Query<User>(ScriptService.Scripts["user_getall"]).AsList();
 			}
 		}
 		public void AddUser(User user) {
@@ -109,7 +114,7 @@ namespace BibleTree.Services {
 		}
 		public void AddStudent(Student student) {
 			using (var db = connect()) {
-				throw new NotImplementedException();
+				ScriptService.Execute(db, "student_insert", student);
 			}
 		}
 		public void UpdateStudent(Student student) {
@@ -149,7 +154,7 @@ namespace BibleTree.Services {
 		}
 		public void AddAdministrator(Administrator administrator) {
 			using (var db = connect()) {
-				throw new NotImplementedException();
+				ScriptService.Execute(db, "administrator_insert", administrator);
 			}
 		}
 		public void UpdateAdministrator(Administrator administrator) {
@@ -189,7 +194,7 @@ namespace BibleTree.Services {
 		}
 		public void AddFaculty(Faculty faculty) {
 			using (var db = connect()) {
-				throw new NotImplementedException();
+				ScriptService.Execute(db, "faculty_insert", faculty);
 			}
 		}
 		public void UpdateFaculty(Faculty faculty) {

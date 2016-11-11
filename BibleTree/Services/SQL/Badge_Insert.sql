@@ -1,4 +1,5 @@
-﻿INSERT INTO [BibleTree].[dbo].[badge] 
+﻿SET IDENTITY_INSERT [BibleTree].[dbo].[badge] ON
+INSERT INTO [BibleTree].[dbo].[badge] 
 (
 	[badge_id], 
 	[badge_name], 
@@ -20,3 +21,4 @@ VALUES
 	@gifURL, 
 	@pngURL 
 )
+SET IDENTITY_INSERT [BibleTree].[dbo].[badge] OFF

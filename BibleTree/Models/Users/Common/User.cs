@@ -1,27 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel;
+using Dapper.Contrib.Extensions;
+using Newtonsoft.Json;
 
 namespace BibleTree.Models
 {
 	[Serializable]
     public class User
     {
-		[DisplayName("User Name")] public string name { get; set; }
-		[DisplayName("Email")] public string email { get; set; }
-        public string token { get; set; }
-		public long unique_id { get; set; }
+		[DisplayName("User Name")] public string user_name { get; set; }
+
+		[DisplayName("Email")] public string user_email { get; set; }
+
+        public string user_token { get; set; }
+
+		[Key] public long user_id { get; set; }
+
+	    public char user_type { get; set; }
 
 	    public void mapUser(User u) {
-		    this.name = u.name;
-		    this.email = u.email;
-		    this.token = u.token;
-		    this.unique_id = u.unique_id;
+		    this.user_name = u.user_name;
+		    this.user_email = u.user_email;
+		    this.user_token = u.user_token;
+		    this.user_id = u.user_id;
 	    }
-		
-		/*
+
+	    public override string ToString() {
+		    return "{ user_id:'" + user_id + "' user_name:'" + user_name + "' user_email:'" + user_email + "' user_token:'" + user_token + "' user_type:'" + user_type + "'}";
+	    }
+
+	    /*
 		By design these should be here.
 		Now that it's come to it it seems pretty obvious they shouldn't though.
 		Only students have a badgelist.  I've moved that to the student class.

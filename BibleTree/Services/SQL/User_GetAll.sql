@@ -1,2 +1,2 @@
-﻿SELECT [user].* 
+﻿SELECT [user].*
 FROM [BibleTree].[dbo].[user]
