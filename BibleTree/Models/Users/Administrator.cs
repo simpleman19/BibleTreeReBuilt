@@ -9,6 +9,6 @@ namespace BibleTree.Models
 	[Serializable, DisplayName("Administrator")]
     public class Administrator : User
     {
-		[DisplayName("Administrative Permissions Level")] public string permissions_level { get; set; }
+		[DisplayName("Administrative Permissions Level")] public int administrator_permLevel { get; set; }
     }
 }

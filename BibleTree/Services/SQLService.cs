@@ -41,7 +41,6 @@ namespace BibleTree.Services {
 			//Resets entire database with fresh empty model
 			Drop();
 			Create();
-			AddFaculty(new Faculty() { user_id = 1, user_email = "test@gmail.com", user_token = "", user_name = "test human", user_type ='f', faculty_department = "testing", faculty_position = "tester" });
 			return "success";
 		}
 		public void Drop() {
@@ -64,7 +63,7 @@ namespace BibleTree.Services {
 		public User GetUserById(int user_id) {
 			//throw new NotImplementedException();
 			using (var db = connect()) {
-				return db.Get<User>(user_id);
+				return db.Query<User>(ScriptService.Scripts["user_getbyid"], new {user_id = user_id}).FirstOrDefault();
 			}
 		}
 		public List<User> GetUsers() {

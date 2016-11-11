@@ -29,11 +29,11 @@ GO
 INSERT INTO [BibleTree].[dbo].[administrator]
 (
 	[user_id],
-	[administrator_permlevel]
+	[administrator_permLevel]
 )
 VALUES
 (
 	@user_id,
-	@administrator_permlevel
+	@administrator_permLevel
 )
 GO

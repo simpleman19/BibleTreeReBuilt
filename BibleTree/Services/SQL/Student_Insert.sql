@@ -30,14 +30,14 @@ INSERT INTO [BibleTree].[dbo].[student]
 (
 	[user_id],
 	[student_id],
-	[student_dateenrolled],
-	[student_dategraduated]
+	[student_dateEnrolled],
+	[student_dateGraduated]
 )
 VALUES
 (
 	@user_id,
 	@student_id,
-	@student_dateenrolled,
-	@student_dategraduated
+	@student_dateEnrolled,
+	@student_dateGraduated
 )
 GO
