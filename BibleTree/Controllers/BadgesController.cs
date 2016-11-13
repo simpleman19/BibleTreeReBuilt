@@ -4,49 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BibleTree.Models;
-using BibleTree.Services;
 
 
 namespace BibleTree.Controllers
 {
     public class BadgesController : Controller
     {
-        public ActionResult BadgeTree()
-        {
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("BadgeTree");
-            }
-            else
-            {
-                return View();
-            }
-        }
         // GET: Badges
         public ActionResult BadgeCreate()
         {
-            BadgeType badge = new BadgeType(); 
+            BadgeType badge = new BadgeType();
 
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("BadgeCreate", badge);
-            }
-            else
-            {
-                return View(badge);
-            }
-        }
-
-        // POST: Badges
-        [HttpPost]
-        public ActionResult BadgeCreate(BadgeType badge)
-        {
-            SQLService database = new SQLService();
-            badge.badge_activeDate = new DateTime(2016, 1, 1);
-            badge.badge_expirationDate = new DateTime(2018, 1, 1);
-            database.AddBadgeWithoutId(badge);
-
-            return RedirectToAction("BadgeViewWithBadge", badge.badge_id);
+            return View(badge);
         }
 
         public ActionResult BadgeEdit(int Id)
@@ -55,68 +24,35 @@ namespace BibleTree.Controllers
             BadgeType badge = new BadgeType();
             badge.badge_description = "Testing Description";
             badge.badge_name = "Badge Name";
-            badge.badge_id = 1;
-            badge.badge_availability = new BadgeAvailability();
-            badge.badge_availability.start_availability_date = new DateTime(2016, 10, 4);
-            badge.badge_availability.end_availability_date = new DateTime(2016, 10, 20);
+            badge.badge_id= 1;
 
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("BadgeEdit", badge);
-            }
-            else
-            {
-                return View(badge);
-            }
+            return View(badge);
         }
         
-        public ActionResult BadgeView(int id)
+        public ActionResult BadgeView()
         {
+            // Database call to get one with id
             BadgeType badge = new BadgeType();
-            SQLService db = new SQLService();
-            if (id != 0)
-            {
-                db.GetBadgeById(id);
-            } else
-            {
-                db.GetBadgeById(1);
-            }
+            badge.badge_description = "Testing Description";
+            badge.badge_name = "Badge Name";
+            badge.badge_id = 1;
 
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("BadgeView", badge);
-            }
-            else
-            {
-                return View(badge);
-            }
+            return View(badge);
         }
-
         public ActionResult SendBadge()
         {
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("BadgeSend");
-            }
-            else
-            {
-                return View();
-            }
+            return View();
         }
 
         public ActionResult BadgeList()
         {
-            SQLService database = new SQLService();
-            var badgeList = database.GetBadges();
-
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("BadgeList", badgeList);
-            }
-            else
-            {
-                return View(badgeList);
-            }
+            var badgeList = new List<BadgeType>{
+                            new BadgeType() { badge_name = "Test Badge 1", badge_description = "Just first test badge", badge_id = 1 } ,
+                            new BadgeType() { badge_name = "Test Badge 2", badge_description = "Second test badge" ,  badge_id = 2 } ,
+                            new BadgeType() { badge_name = "Test Badge 3", badge_description = "Third test badge", badge_id = 3} ,
+                            new BadgeType() { badge_name = "Test Badge 4", badge_description = "Another stupid test badge", badge_id = 4} ,
+                        };
+            return View(badgeList);
         }
     }
 }
