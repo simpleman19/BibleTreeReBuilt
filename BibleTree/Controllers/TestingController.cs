@@ -94,14 +94,14 @@ namespace BibleTree.Controllers
 				foreach (var student in sql.GetStudents()) {
 					debug += "<br/>" + student;
 				}
-				debug += "<br/><br/>List of all badges:";
-				foreach (var badge in sql.GetBadges()) {
-					debug += "<br/>" + badge;
-				}
-				debug += "<br/><br/>List of all awards:";
-				foreach (var award in sql.GetAwards()) {
-					debug += "<br/>" + award;
-				}
+				//debug += "<br/><br/>List of all badges:";
+				//foreach (var badge in sql.GetBadges()) {
+				//	debug += "<br/>" + badge;
+				//}
+				//debug += "<br/><br/>List of all awards:";
+				//foreach (var award in sql.GetAwards()) {
+				//	debug += "<br/>" + award;
+				//}
 
 			} catch (Exception e) {
 			    debug += "<br/><p style=\"color:red\">EXCEPTION: " + e.Message + "</p>";
