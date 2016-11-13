@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel;
+using Dapper.Contrib.Extensions;
 
 namespace BibleTree.Models
 {
@@ -14,5 +12,9 @@ namespace BibleTree.Models
 		[DisplayName("Recipient ID")] public long recipient_id { get; set; }
 		[DisplayName("Sender ID")] public long sender_id { get; set; }
 		[DisplayName("Badge ID")] public long badge_id { get; set; }
+		public long user_id { get; set; }
+		[Key]public long award_id { get; set; }
+
+		public BadgeType badge_type { get; set; }
     }
 }
