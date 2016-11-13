@@ -40,12 +40,12 @@ namespace BibleTree.Controllers
         {
             // Database call to get one with id
             BadgeType badge = new BadgeType();
-            badge.description = "Testing Description";
-            badge.name = "Badge Name";
-            badge.unique_id= 1;
-            badge.availability = new BadgeAvailability();
-            badge.availability.start_availability_date = new DateTime(2016, 10, 4);
-            badge.availability.end_availability_date = new DateTime(2016, 10, 20);
+            badge.badge_description = "Testing Description";
+            badge.badge_name = "Badge Name";
+            badge.badge_id = 1;
+            badge.badge_availability = new BadgeAvailability();
+            badge.badge_availability.start_availability_date = new DateTime(2016, 10, 4);
+            badge.badge_availability.end_availability_date = new DateTime(2016, 10, 20);
 
             if (Request.IsAjaxRequest())
             {
@@ -61,12 +61,12 @@ namespace BibleTree.Controllers
         {
             // Database call to get one with id
             BadgeType badge = new BadgeType();
-            badge.description = "Testing Description";
-            badge.name = "Badge Name";
-            badge.unique_id = 1;
-            badge.availability = new BadgeAvailability();
-            badge.availability.start_availability_date = new DateTime(2016,10,4);
-            badge.availability.end_availability_date = new DateTime(2016, 10, 20);
+            badge.badge_description = "Testing Description";
+            badge.badge_name = "Badge Name";
+            badge.badge_id = 1;
+            badge.badge_availability = new BadgeAvailability();
+            badge.badge_availability.start_availability_date = new DateTime(2016,10,4);
+            badge.badge_availability.end_availability_date = new DateTime(2016, 10, 20);
 
             if (Request.IsAjaxRequest())
             {

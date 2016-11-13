@@ -20,22 +20,22 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.availability.start_availability_date)
+            @Html.DisplayNameFor(model => model.badge_availability.start_availability_date)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.availability.start_availability_date)
+            @Html.DisplayFor(model => model.badge_availability.start_availability_date)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.availability.end_availability_date)
+            @Html.DisplayNameFor(model => model.badge_availability.end_availability_date)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.availability.end_availability_date)
+            @Html.DisplayFor(model => model.badge_availability.end_availability_date)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.png_url)
+            @Html.DisplayNameFor(model => model.badge_pngURL)
         </dt>
 
         <dd>
@@ -68,6 +68,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "BadgeEdit", new { id = Model.unique_id }) |
+    @Html.ActionLink("Edit", "BadgeEdit", new { id = Model.badge_id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
