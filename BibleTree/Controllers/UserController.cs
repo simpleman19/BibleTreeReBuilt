@@ -12,9 +12,9 @@ namespace BibleTree.Controllers
         public ActionResult UserHome()
         {
             BadgeType badge = new BadgeType();
-            badge.description = "Testing Description";
-            badge.name = "Badge Name";
-            badge.unique_id = 1;
+            badge.badge_description = "Testing Description";
+            badge.badge_name = "Badge Name";
+            badge.badge_id = 1;
 
             return View(badge);
         }
