@@ -20,13 +20,27 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.badge_pngURL)
+            @Html.DisplayNameFor(model => model.availability.start_availability_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.availability.start_availability_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.availability.end_availability_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.availability.end_availability_date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.png_url)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.badge_pngURL)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.badge_gifURL)
         </dt>

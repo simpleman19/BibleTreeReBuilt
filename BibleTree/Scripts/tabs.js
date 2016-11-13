@@ -1,29 +1,28 @@
-﻿(function ($) {
-
-    'use strict';
-
-    $(document).on('show.bs.tab', '.nav-tabs-responsive [data-toggle="tab"]', function (e) {
-        var $target = $(e.target);
-        var $tabs = $target.closest('.nav-tabs-responsive');
-        var $current = $target.closest('li');
-        var $parent = $current.closest('li.dropdown');
-        $current = $parent.length > 0 ? $parent : $current;
-        var $next = $current.next();
-        var $prev = $current.prev();
-        var updateDropdownMenu = function ($el, position) {
-            $el
-              .find('.dropdown-menu')
-              .removeClass('pull-xs-left pull-xs-center pull-xs-right')
-              .addClass('pull-xs-' + position);
-        };
-
-        $tabs.find('>li').removeClass('next prev');
-        $prev.addClass('prev');
-        $next.addClass('next');
-
-        updateDropdownMenu($prev, 'left');
-        updateDropdownMenu($current, 'center');
-        updateDropdownMenu($next, 'right');
+﻿function changeTo(number) {
+    var url = '';
+    if (number == 0) {
+        url = '/badges/badgetree';
+    } else if (number == 1) {
+        url = '/badges/badgecreate';
+    } else if (number == 2) {
+        url = '/badges/badgelist';
+    } else if (number == 3) {
+        url = '/users/userlist';
+    }
+    for (i = 0; i < 4; i++) {
+        id_to_change = '#button' + i;
+        $(id_to_change).css({ "background-color": "white" });
+    }
+    id_to_change = '#button' + number;
+    $.ajax({
+        type: "GET",
+        headers: {
+        },
+        url: url,
+        dataType: 'html',
+        success: function (data) {
+            $('#partial_view').html(data);
+        }
     });
-
-})(jQuery);
+    $(id_to_change).css({"background-color": "grey"});
+}
