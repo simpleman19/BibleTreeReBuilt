@@ -24,7 +24,7 @@ namespace BibleTree.Controllers
         // GET: Badges
         public ActionResult BadgeCreate()
         {
-            BadgeType badge = new BadgeType();
+            BadgeType badge = new BadgeType(); 
 
             if (Request.IsAjaxRequest())
             {
@@ -92,10 +92,10 @@ namespace BibleTree.Controllers
         public ActionResult BadgeList()
         {
             var badgeList = new List<BadgeType>{
-                            new BadgeType() { name = "Test Badge 1", description = "Just first test badge", unique_id = 1 } ,
-                            new BadgeType() { name = "Test Badge 2", description = "Second test badge" ,  unique_id = 2 } ,
-                            new BadgeType() { name = "Test Badge 3", description = "Third test badge", unique_id = 3} ,
-                            new BadgeType() { name = "Test Badge 4", description = "Another stupid test badge", unique_id = 4} ,
+                            new BadgeType() { badge_name = "Test Badge 1", badge_description = "Just first test badge", badge_id = 1 } ,
+                            new BadgeType() { badge_name = "Test Badge 2", badge_description = "Second test badge" ,  badge_id = 2 } ,
+                            new BadgeType() { badge_name = "Test Badge 3", badge_description = "Third test badge", badge_id = 3} ,
+                            new BadgeType() { badge_name = "Test Badge 4", badge_description = "Another stupid test badge", badge_id = 4} ,
                         };
             if (Request.IsAjaxRequest())
             {
