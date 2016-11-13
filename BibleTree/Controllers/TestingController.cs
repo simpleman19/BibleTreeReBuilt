@@ -67,6 +67,16 @@ namespace BibleTree.Controllers
 				sql.AddUserWithoutId(new User() {user_name = "test user5", user_email = "testuser5@gmail.com", user_token = "user5token" });
 				debug += "<br/>result 2:" + sql.GetUserById(5);
 
+				debug += "<br/><br/>Renaming user 4 to \"changed user\"<br/>result: ";
+				User u = sql.GetUserById(4);
+				u.user_name = "changed user";
+				u.user_email = "changed@gmail.com";
+				u.user_token = "changedtoken";
+				sql.UpdateUser(u);
+				debug += sql.GetUserById(4);
+
+				//debug += "<br/><br/>Adding a badge\"test badge\"<br/>result: ";
+				//sql.AddBadge(new BadgeType() { badge_id = 1, badge_name = "test badge", badge_description  = "a test badge", badge_level =""});
 
 				debug += "<br/><br/>List of all users:";
 			    foreach (var user in sql.GetUsers()) {
@@ -83,6 +93,14 @@ namespace BibleTree.Controllers
 				debug += "<br/><br/>List of all students:";
 				foreach (var student in sql.GetStudents()) {
 					debug += "<br/>" + student;
+				}
+				debug += "<br/><br/>List of all badges:";
+				foreach (var badge in sql.GetBadges()) {
+					debug += "<br/>" + badge;
+				}
+				debug += "<br/><br/>List of all awards:";
+				foreach (var award in sql.GetAwards()) {
+					debug += "<br/>" + award;
 				}
 
 			} catch (Exception e) {

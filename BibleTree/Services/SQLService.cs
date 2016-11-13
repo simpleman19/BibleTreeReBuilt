@@ -249,6 +249,17 @@ namespace BibleTree.Services {
 					(a, b) => {
 						a.badge_type = b;
 						return a;
+					}, user_id,
+					splitOn: "badge_id"
+				).AsList();
+			}
+		}
+		public List<BadgeInstance> GetAwards() {
+			using (var db = connect()) {
+				return db.Query<BadgeInstance, BadgeType, BadgeInstance>(ScriptService.Scripts["awardedbadge_getall"],
+					(a, b) => {
+						a.badge_type = b;
+						return a;
 					},
 					splitOn: "badge_id"
 				).AsList();
