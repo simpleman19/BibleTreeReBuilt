@@ -10,12 +10,30 @@ namespace BibleTree.Controllers
 {
     public class BadgesController : Controller
     {
+        public ActionResult BadgeTree()
+        {
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("BadgeTree");
+            }
+            else
+            {
+                return View();
+            }
+        }
         // GET: Badges
         public ActionResult BadgeCreate()
         {
             BadgeType badge = new BadgeType();
 
-            return View(badge);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("BadgeCreate", badge);
+            }
+            else
+            {
+                return View(badge);
+            }
         }
 
         public ActionResult BadgeEdit(int Id)
@@ -29,7 +47,14 @@ namespace BibleTree.Controllers
             badge.availability.start_availability_date = new DateTime(2016, 10, 4);
             badge.availability.end_availability_date = new DateTime(2016, 10, 20);
 
-            return View(badge);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("BadgeEdit", badge);
+            }
+            else
+            {
+                return View(badge);
+            }
         }
         
         public ActionResult BadgeView()
@@ -42,11 +67,26 @@ namespace BibleTree.Controllers
             badge.availability = new BadgeAvailability();
             badge.availability.start_availability_date = new DateTime(2016,10,4);
             badge.availability.end_availability_date = new DateTime(2016, 10, 20);
-            return View(badge);
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("BadgeView", badge);
+            }
+            else
+            {
+                return View(badge);
+            }
         }
         public ActionResult SendBadge()
         {
-            return View();
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("BadgeSend");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult BadgeList()
@@ -57,7 +97,14 @@ namespace BibleTree.Controllers
                             new BadgeType() { name = "Test Badge 3", description = "Third test badge", unique_id = 3} ,
                             new BadgeType() { name = "Test Badge 4", description = "Another stupid test badge", unique_id = 4} ,
                         };
-            return View(badgeList);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("BadgeList", badgeList);
+            }
+            else
+            {
+                return View(badgeList);
+            }
         }
     }
 }

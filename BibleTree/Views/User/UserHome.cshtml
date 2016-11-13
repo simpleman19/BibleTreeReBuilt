@@ -4,33 +4,42 @@
     ViewBag.Title = "UserHome";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="~/Scripts/jquery-1.10.2.js"></script>
 <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<script src="~/Scripts/responsive-tabs.js"></script>
 <script src="~/Scripts/modernizr-2.6.2.js"></script>
 <script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/tabs.js"></script>
 <link href="~/Content/tabs.css" rel="stylesheet" type="text/css" />
 
 <style>
     .bumpDown {
         margin-top: 80px;
     }
-
+    .tabbing {
+        padding: 0px;
+        border: none;
+        background: none;
+    }
 </style>
 
 <div class="container bumpDown">
-    <ul class="nav nav-tabs responsive" id="myTab">
-        <li class="active"><a href="#home">Home</a></li>
-        <li><a href="#profile">Profile</a></li>
-        <li><a href="#messages">Messages</a></li>
-    </ul>
+    <div class="row">
+        <div class="col-sm-6">
+            <button class="tabbing col-sm-3" id="button0" onclick="changeTo(0)">Badge Tree</button>
+            <button class="tabbing col-sm-3" id="button1" onclick="changeTo(1)">Badge Create</button>
+            <button class="tabbing col-sm-3" id="button2" onclick="changeTo(2)">Badge List</button>
+            <button class="tabbing col-sm-3" id="button3" onclick="changeTo(3)">User List</button>
+        </div>
+        <div class="col-sm-6">
+            
+        </div>
+    </div>
 
-    <div class="tab-content responsive">
-        <div class="tab-pane active" id="home">...content...</div>
-        <div class="tab-pane" id="profile">...content...</div>
-        <div class="tab-pane" id="messages">...content...</div>
+    <div class="row">
+        <div id="partial_view">
+        </div>
     </div>
 </div>
 
