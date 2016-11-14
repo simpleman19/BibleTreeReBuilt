@@ -1,22 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel;
+using Dapper.Contrib.Extensions;
 
 namespace BibleTree.Models
 {
 	[Serializable, DisplayName("Badge Type")]
     public class BadgeType
     {
-        public enum Badge_Level { CORE, COMPETENCY, COMMENDATION }
+        public enum Badge_Level { CORE = 1, COMPETENCY = 2, COMMENDATION = 3 }
 
-		[DisplayName("Name")] public string name { get; set; }
-		[DisplayName("PNG URL")] public string png_url { get; set; }
-		[DisplayName("GIF URL")] public string gif_url { get; set; }
-		[DisplayName("Description")] public string description { get; set; }
-        [DisplayName("ID Number")] public long unique_id { get; set; }
-		[DisplayName("Availability")] public BadgeAvailability availability { get; set; }
+		[DisplayName("Name")] public string badge_name { get; set; }
+		[DisplayName("PNG URL")] public string badge_pngURL { get; set; }
+		[DisplayName("GIF URL")] public string badge_gifURL { get; set; }
+		[DisplayName("Description")] public string badge_description { get; set; }
+
+
+
+		[Key] public long badge_id { get; set; }
+		[DisplayName("Availability")] public BadgeAvailability badge_availability { get; set; }
 		[DisplayName("Badge Level")] public Badge_Level badge_level { get; set; }
 
     }
