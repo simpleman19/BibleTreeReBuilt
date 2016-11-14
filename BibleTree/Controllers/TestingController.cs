@@ -75,8 +75,13 @@ namespace BibleTree.Controllers
 				sql.UpdateUser(u);
 				debug += sql.GetUserById(4);
 
-				//debug += "<br/><br/>Adding a badge\"test badge\"<br/>result: ";
-				//sql.AddBadge(new BadgeType() { badge_id = 1, badge_name = "test badge", badge_description  = "a test badge", badge_level =""});
+				debug += "<br/><br/>Adding a badge\"test badge\" with id 1<br/>result: ";
+				sql.AddBadgeWithId(new BadgeType() { badge_id = 1, badge_name = "test badge", badge_description  = "a test badge", badge_level = BadgeType.Badge_Level.CORE, badge_activeDate = DateTime.Now, badge_expirationDate = DateTime.MaxValue });
+				debug += sql.GetBadgeById(1);
+
+				debug += "<br/><br/>Adding another  badge\"test badge2\" without specific id<br/>result: ";
+				sql.AddBadgeWithoutId(new BadgeType() { badge_name = "test badge 2", badge_description = "a second test badge", badge_level = BadgeType.Badge_Level.CORE, badge_activeDate = DateTime.Now, badge_expirationDate = DateTime.MaxValue });
+				debug += sql.GetBadgeById(2);
 
 				debug += "<br/><br/>List of all users:";
 			    foreach (var user in sql.GetUsers()) {

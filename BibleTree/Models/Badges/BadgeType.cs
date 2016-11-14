@@ -13,7 +13,8 @@ namespace BibleTree.Models
 		[DisplayName("PNG URL")] public string badge_pngURL { get; set; }
 		[DisplayName("GIF URL")] public string badge_gifURL { get; set; }
 		[DisplayName("Description")] public string badge_description { get; set; }
-
+		public DateTime badge_activeDate { get; set; }
+		public DateTime badge_expirationDate { get; set; }
 
 
 		[Key] public long badge_id { get; set; }

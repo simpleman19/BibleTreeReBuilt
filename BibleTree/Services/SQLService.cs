@@ -215,9 +215,14 @@ namespace BibleTree.Services {
 		 */
 		#region Badge Operations
 
-		public void AddBadge(BadgeType badge) {
+		public void AddBadgeWithId(BadgeType badge) {
 			using (var db = connect()) {
-				db.Execute(ScriptService.Scripts["badge_insert"], badge);
+				db.Execute(ScriptService.Scripts["badge_insertwithid"], badge);
+			}
+		}
+		public void AddBadgeWithoutId(BadgeType badge) {
+			using (var db = connect()) {
+				db.Execute(ScriptService.Scripts["badge_insertwithoutid"], badge);
 			}
 		}
 		public void UpdateBadge(BadgeType badge) {
@@ -227,12 +232,12 @@ namespace BibleTree.Services {
 		}
 		public List<BadgeType> GetBadges() {
 			using (var db = connect()) {
-				return db.GetAll<BadgeType>().AsList();
+				return db.Query<BadgeType>(ScriptService.Scripts["badge_getall"]).AsList();
 			}
 		}
 		public BadgeType GetBadgeById(int badge_id) {
 			using (var db = connect()) {
-				return db.Get<BadgeType>(badge_id);
+				return db.Query<BadgeType>(ScriptService.Scripts["badge_getbyid"], new { badge_id = badge_id }).FirstOrDefault();
 			}
 		}
 		#endregion
