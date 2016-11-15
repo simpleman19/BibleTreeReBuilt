@@ -11,6 +11,8 @@ namespace BibleTree.Controllers
     {
         public ActionResult Index()
         {
+            
+
             return View();
         }
 
