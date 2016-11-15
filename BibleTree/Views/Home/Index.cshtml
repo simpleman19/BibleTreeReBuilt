@@ -1,8 +1,24 @@
 ﻿
 @{
     ViewBag.Title = "Index";
+
+    ViewBag.ReturnUrl = "/Badges/BadgeCreate";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
+
+
+@Html.Partial("~/Views/Account/Login.cshtml", new BibleTree.Models.LoginViewModel())
+
+@*
+    @Membership.DeleteUser("aaron.holmes@eagles.oc.edu");
+
+            @Html.Action("Login", "Account")
+
+
+        @Html.Partial("~/Account/Login");
+
+        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+
+*@

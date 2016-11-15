@@ -13,6 +13,11 @@ namespace BibleTree.Controllers
         // GET: Badges
         public ActionResult BadgeCreate()
         {
+            //if(User.Identity.IsAuthenticated == true)
+            //{
+            //    return RedirectToAction("Index");
+            //}
+
             BadgeType badge = new BadgeType();
 
             return View(badge);
