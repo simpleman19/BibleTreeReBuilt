@@ -35,7 +35,7 @@ namespace BibleTree.Controllers
             //return PartialView(students);
             SQLService database = new SQLService();
             var userList = database.GetStudents();
-            return View("StudentList", userList);
+            return View("StudentSearchModal", userList);
         }
 
     }

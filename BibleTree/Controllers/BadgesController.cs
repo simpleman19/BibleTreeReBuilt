@@ -76,7 +76,7 @@ namespace BibleTree.Controllers
             SQLService db = new SQLService();
             if (id != 0)
             {
-                db.GetBadgeById(id)
+                db.GetBadgeById(id);
             } else
             {
                 db.GetBadgeById(1);

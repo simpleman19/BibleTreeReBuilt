@@ -21,8 +21,7 @@ namespace BibleTree.Controllers
             SQLService db = new SQLService();
             var students = db.GetStudents();
 
-            //return PartialView(students);
-            return Content("Hi");
+            return PartialView(students);
         }
     }
 }

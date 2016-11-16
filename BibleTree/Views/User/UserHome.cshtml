@@ -5,6 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="~/Scripts/student.selection.js"></script>
+<script src="~/browser_components/datatables/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" href="~/browser_components/datatables/css/dataTables.bootstrap.css">
+
+<script>
+
+    function finishedStudentSelection() {
+        // Do something after user is selected
+        alert('You clicked on user id: ' + student_selection);
+    }
+
+</script>
 
 <style>
     .bumpDown {
@@ -24,6 +36,7 @@
             <button class="tabbing col-sm-3" id="button1" onclick="changeTo(1)">Badge Create</button>
             <button class="tabbing col-sm-3" id="button2" onclick="changeTo(2)">Badge List</button>
             <button class="tabbing col-sm-3" id="button3" onclick="changeTo(3)">User List</button>
+            <button class="tabbing col-sm-3" id="button4" onclick="selectStudent()">Select Student</button>
         </div>
         <div class="col-sm-6">
             
@@ -38,20 +51,3 @@
 
     </div>
 </div>
-
-<script>
-    studentSelection = 0;
-    function selectStudent() {
-        var url = '/ModalSearch/StudentSearch';
-        $.ajax({
-            type: "GET",
-            headers: {
-            },
-            url: url,
-            dataType: 'html',
-            success: function (data) {
-                $('#modal').html(data);
-            }
-        });
-    }
-</script>

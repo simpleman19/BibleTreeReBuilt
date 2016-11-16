@@ -217,7 +217,6 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ModalController.cs" />
     <Compile Include="Controllers\BadgesController.cs" />
@@ -346,6 +345,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\responsive-tabs.js" />
+    <Content Include="Scripts\student.selection.js" />
     <Content Include="Scripts\tabs.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Services\SQL\Administrator_GetAll.sql" />
@@ -425,12 +425,12 @@
     <Content Include="Views\Testing\Index.cshtml" />
     <Content Include="Views\Badges\BadgeTree.cshtml" />
     <Content Include="Views\User\StudentList.cshtml" />
-    <Content Include="Views\ModalSearch\StudentSearch.cshtml" />
+    <Content Include="Views\Modal\StudentSearch.cshtml" />
+    <Content Include="Views\User\StudentSearchModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\Badges\obj\" />
-    <Folder Include="Views\Modal\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
