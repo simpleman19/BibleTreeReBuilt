@@ -34,4 +34,24 @@
         <div id="partial_view" class="col-sm-10 center-block">
         </div>
     </div>
+    <div id="modal">
+
+    </div>
 </div>
+
+<script>
+    studentSelection = 0;
+    function selectStudent() {
+        var url = '/ModalSearch/StudentSearch';
+        $.ajax({
+            type: "GET",
+            headers: {
+            },
+            url: url,
+            dataType: 'html',
+            success: function (data) {
+                $('#modal').html(data);
+            }
+        });
+    }
+</script>

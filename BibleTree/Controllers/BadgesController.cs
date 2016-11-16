@@ -42,11 +42,11 @@ namespace BibleTree.Controllers
         public ActionResult BadgeCreate(BadgeType badge)
         {
             SQLService database = new SQLService();
-            badge.badge_availability.start_availability_date = new DateTime(2016, 10, 4);
-            badge.badge_availability.end_availability_date = new DateTime(2016, 10, 20);
-            database.AddBadge(badge);
+            badge.badge_activeDate = new DateTime(2016, 1, 1);
+            badge.badge_expirationDate = new DateTime(2018, 1, 1);
+            database.AddBadgeWithoutId(badge);
 
-            return RedirectToAction("BadgeViewWithBadge", badge);
+            return RedirectToAction("BadgeViewWithBadge", badge.badge_id);
         }
 
         public ActionResult BadgeEdit(int Id)
@@ -70,16 +70,17 @@ namespace BibleTree.Controllers
             }
         }
         
-        public ActionResult BadgeView()
+        public ActionResult BadgeView(int id)
         {
-            // Database call to get one with id
             BadgeType badge = new BadgeType();
-            badge.badge_description = "Testing Description";
-            badge.badge_name = "Badge Name";
-            badge.badge_id = 1;
-            badge.badge_availability = new BadgeAvailability();
-            badge.badge_availability.start_availability_date = new DateTime(2016,10,4);
-            badge.badge_availability.end_availability_date = new DateTime(2016, 10, 20);
+            SQLService db = new SQLService();
+            if (id != 0)
+            {
+                db.GetBadgeById(id)
+            } else
+            {
+                db.GetBadgeById(1);
+            }
 
             if (Request.IsAjaxRequest())
             {
@@ -91,17 +92,6 @@ namespace BibleTree.Controllers
             }
         }
 
-        public ActionResult BadgeViewWithBadge(BadgeType badge)
-        {
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("BadgeView", badge);
-            }
-            else
-            {
-                return View("BadgeView", badge);
-            }
-        }
         public ActionResult SendBadge()
         {
             if (Request.IsAjaxRequest())
