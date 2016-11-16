@@ -230,10 +230,19 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="browser_components\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="browser_components\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="browser_components\bootstrap\css\bootstrap.css" />
+    <Content Include="browser_components\bootstrap\css\bootstrap.min.css" />
+    <Content Include="browser_components\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="browser_components\bootstrap\js\bootstrap.js" />
+    <Content Include="browser_components\bootstrap\js\bootstrap.min.js" />
+    <Content Include="browser_components\bootstrap\js\npm.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="browser_components\jquery-3.1.1.js" />
     <Content Include="Content\tabs.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -252,6 +261,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="browser_components\bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="browser_components\bootstrap\css\bootstrap-theme.min.css.map" />
+    <Content Include="browser_components\bootstrap\css\bootstrap.css.map" />
+    <Content Include="browser_components\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="browser_components\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="browser_components\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="browser_components\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="browser_components\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
@@ -351,6 +368,8 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Testing\Index.cshtml" />
+    <Content Include="Views\Badges\BadgeTree.cshtml" />
+    <Content Include="Views\User\StudentList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

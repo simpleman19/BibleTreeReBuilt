@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BibleTree.Models;
+using BibleTree.Services;
 
 
 namespace BibleTree.Controllers
@@ -34,6 +35,18 @@ namespace BibleTree.Controllers
             {
                 return View(badge);
             }
+        }
+
+        // POST: Badges
+        [HttpPost]
+        public ActionResult BadgeCreate(BadgeType badge)
+        {
+            SQLService database = new SQLService();
+            badge.badge_availability.start_availability_date = new DateTime(2016, 10, 4);
+            badge.badge_availability.end_availability_date = new DateTime(2016, 10, 20);
+            database.AddBadge(badge);
+
+            return RedirectToAction("BadgeViewWithBadge", badge);
         }
 
         public ActionResult BadgeEdit(int Id)
@@ -77,6 +90,18 @@ namespace BibleTree.Controllers
                 return View(badge);
             }
         }
+
+        public ActionResult BadgeViewWithBadge(BadgeType badge)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("BadgeView", badge);
+            }
+            else
+            {
+                return View("BadgeView", badge);
+            }
+        }
         public ActionResult SendBadge()
         {
             if (Request.IsAjaxRequest())
@@ -91,12 +116,9 @@ namespace BibleTree.Controllers
 
         public ActionResult BadgeList()
         {
-            var badgeList = new List<BadgeType>{
-                            new BadgeType() { badge_name = "Test Badge 1", badge_description = "Just first test badge", badge_id = 1 } ,
-                            new BadgeType() { badge_name = "Test Badge 2", badge_description = "Second test badge" ,  badge_id = 2 } ,
-                            new BadgeType() { badge_name = "Test Badge 3", badge_description = "Third test badge", badge_id = 3} ,
-                            new BadgeType() { badge_name = "Test Badge 4", badge_description = "Another stupid test badge", badge_id = 4} ,
-                        };
+            SQLService database = new SQLService();
+            var badgeList = database.GetBadges();
+
             if (Request.IsAjaxRequest())
             {
                 return PartialView("BadgeList", badgeList);
