@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BibleTree.Models;
+using BibleTree.Services;
 
 
 namespace BibleTree.Controllers
@@ -36,6 +37,18 @@ namespace BibleTree.Controllers
             }
         }
 
+        // POST: Badges
+        [HttpPost]
+        public ActionResult BadgeCreate(BadgeType badge)
+        {
+            SQLService database = new SQLService();
+            badge.badge_activeDate = new DateTime(2016, 1, 1);
+            badge.badge_expirationDate = new DateTime(2018, 1, 1);
+            database.AddBadgeWithoutId(badge);
+
+            return RedirectToAction("BadgeViewWithBadge", badge.badge_id);
+        }
+
         public ActionResult BadgeEdit(int Id)
         {
             // Database call to get one with id
@@ -57,16 +70,17 @@ namespace BibleTree.Controllers
             }
         }
         
-        public ActionResult BadgeView()
+        public ActionResult BadgeView(int id)
         {
-            // Database call to get one with id
             BadgeType badge = new BadgeType();
-            badge.badge_description = "Testing Description";
-            badge.badge_name = "Badge Name";
-            badge.badge_id = 1;
-            badge.badge_availability = new BadgeAvailability();
-            badge.badge_availability.start_availability_date = new DateTime(2016,10,4);
-            badge.badge_availability.end_availability_date = new DateTime(2016, 10, 20);
+            SQLService db = new SQLService();
+            if (id != 0)
+            {
+                db.GetBadgeById(id);
+            } else
+            {
+                db.GetBadgeById(1);
+            }
 
             if (Request.IsAjaxRequest())
             {
@@ -77,6 +91,7 @@ namespace BibleTree.Controllers
                 return View(badge);
             }
         }
+
         public ActionResult SendBadge()
         {
             if (Request.IsAjaxRequest())
@@ -91,12 +106,9 @@ namespace BibleTree.Controllers
 
         public ActionResult BadgeList()
         {
-            var badgeList = new List<BadgeType>{
-                            new BadgeType() { badge_name = "Test Badge 1", badge_description = "Just first test badge", badge_id = 1 } ,
-                            new BadgeType() { badge_name = "Test Badge 2", badge_description = "Second test badge" ,  badge_id = 2 } ,
-                            new BadgeType() { badge_name = "Test Badge 3", badge_description = "Third test badge", badge_id = 3} ,
-                            new BadgeType() { badge_name = "Test Badge 4", badge_description = "Another stupid test badge", badge_id = 4} ,
-                        };
+            SQLService database = new SQLService();
+            var badgeList = database.GetBadges();
+
             if (Request.IsAjaxRequest())
             {
                 return PartialView("BadgeList", badgeList);

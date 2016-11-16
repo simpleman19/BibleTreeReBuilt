@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BibleTree.Models;
+using BibleTree.Services;
 
 namespace BibleTree.Controllers
 {
@@ -18,5 +19,24 @@ namespace BibleTree.Controllers
 
             return View(badge);
         }
+
+        public ActionResult UserList()
+        {
+            SQLService database = new SQLService();
+            var userList = database.GetStudents();
+
+            return View("StudentList", userList);
+        }
+        public ActionResult UserSearch()
+        {
+            //SQLService db = new SQLService();
+            //var students = db.GetStudents();
+
+            //return PartialView(students);
+            SQLService database = new SQLService();
+            var userList = database.GetStudents();
+            return View("StudentSearchModal", userList);
+        }
+
     }
 }
