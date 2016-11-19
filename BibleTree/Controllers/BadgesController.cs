@@ -39,14 +39,10 @@ namespace BibleTree.Controllers
 
         // POST: Badges
         [HttpPost]
-        public ActionResult BadgeCreate(BadgeType badge)
+        public void BadgeCreate(BadgeType badge)
         {
             SQLService database = new SQLService();
-            badge.badge_activeDate = new DateTime(2016, 1, 1);
-            badge.badge_expirationDate = new DateTime(2018, 1, 1);
             database.AddBadgeWithoutId(badge);
-
-            return RedirectToAction("BadgeViewWithBadge", badge.badge_id);
         }
 
         public ActionResult BadgeEdit(int Id)
@@ -56,9 +52,8 @@ namespace BibleTree.Controllers
             badge.badge_description = "Testing Description";
             badge.badge_name = "Badge Name";
             badge.badge_id = 1;
-            badge.badge_availability = new BadgeAvailability();
-            badge.badge_availability.start_availability_date = new DateTime(2016, 10, 4);
-            badge.badge_availability.end_availability_date = new DateTime(2016, 10, 20);
+            badge.badge_activeDate = new DateTime(2016, 10, 4);
+            badge.badge_expirationDate = new DateTime(2016, 10, 20);
 
             if (Request.IsAjaxRequest())
             {

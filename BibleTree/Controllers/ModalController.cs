@@ -23,5 +23,13 @@ namespace BibleTree.Controllers
 
             return PartialView(students);
         }
+
+        public ActionResult BadgeSearch()
+        {
+            SQLService db = new SQLService();
+            var badges = db.GetBadges();
+
+            return PartialView(badges);
+        }
     }
 }

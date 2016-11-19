@@ -223,7 +223,7 @@
     <Compile Include="Controllers\TestingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Services\SQL\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -345,6 +345,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\responsive-tabs.js" />
+    <Content Include="Scripts\badge.selection.js" />
     <Content Include="Scripts\student.selection.js" />
     <Content Include="Scripts\tabs.js" />
     <Content Include="Scripts\_references.js" />
@@ -427,6 +428,8 @@
     <Content Include="Views\User\StudentList.cshtml" />
     <Content Include="Views\Modal\StudentSearch.cshtml" />
     <Content Include="Views\User\StudentSearchModal.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BadgeLevel.cshtml" />
+    <Content Include="Views\Modal\BadgeSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
