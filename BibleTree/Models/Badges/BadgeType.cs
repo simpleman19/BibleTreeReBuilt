@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using Dapper.Contrib.Extensions;
+using System.ComponentModel.DataAnnotations;
 
 namespace BibleTree.Models
 {
@@ -13,12 +14,18 @@ namespace BibleTree.Models
 		[DisplayName("PNG URL")] public string badge_pngURL { get; set; }
 		[DisplayName("GIF URL")] public string badge_gifURL { get; set; }
 		[DisplayName("Description")] public string badge_description { get; set; }
-		public DateTime badge_activeDate { get; set; }
-		public DateTime badge_expirationDate { get; set; }
 
+        [DisplayName("Active Date")]
+        [DataType(DataType.Date)]//changed line
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
+        public DateTime badge_activeDate { get; set; }
 
-		[Key] public long badge_id { get; set; }
-		[DisplayName("Availability")] public BadgeAvailability badge_availability { get; set; }
+        [DisplayName("Expire Date")]
+        [DataType(DataType.Date)]//changed line
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
+        public DateTime badge_expirationDate { get; set; }
+
+		[Dapper.Contrib.Extensions.Key] public long badge_id { get; set; }
 		[DisplayName("Badge Level")] public Badge_Level badge_level { get; set; }
 
 		public override string ToString() {

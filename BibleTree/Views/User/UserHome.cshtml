@@ -5,9 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script src="~/Scripts/student.selection.js"></script>
+<script src="~/Scripts/badge.selection.js"></script>
 <script src="~/browser_components/datatables/js/jquery.dataTables.js"></script>
 <link rel="stylesheet" href="~/browser_components/datatables/css/dataTables.bootstrap.css">
+
+<script>
+        function finishedBadgeSelection() {
+            // Do something after user is selected
+            alert('You clicked on badge id: ' + badge_selection);
+        }
+
+</script>
+
+
+<script src="~/Scripts/student.selection.js"></script>
 
 <script>
 
@@ -17,6 +28,10 @@
     }
 
 </script>
+
+<div id="modal">
+
+</div>
 
 <style>
     .bumpDown {
@@ -37,6 +52,7 @@
             <button class="tabbing col-sm-3" id="button2" onclick="changeTo(2)">Badge List</button>
             <button class="tabbing col-sm-3" id="button3" onclick="changeTo(3)">User List</button>
             <button class="tabbing col-sm-3" id="button4" onclick="selectStudent()">Select Student</button>
+           <button class="tabbing col-sm-3" id="button5" onclick="selectBadge()">Select Badge</button>
         </div>
         <div class="col-sm-6">
             
@@ -46,8 +62,5 @@
     <div class="row">
         <div id="partial_view" class="col-sm-10 center-block">
         </div>
-    </div>
-    <div id="modal">
-
     </div>
 </div>
