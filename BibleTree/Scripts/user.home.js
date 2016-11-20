@@ -59,3 +59,25 @@ function editBadge(id) {
     $(id_to_change).css({ "background-color": "grey" });
     last_selection = -1;
 }
+
+function badgeDetail(id) {
+    last_selection = 2;
+    var url = '/badges/badgeview/' + id;
+    for (i = 0; i < 5; i++) {
+        id_to_change = '#button' + i;
+        $(id_to_change).css({ "background-color": "white" });
+    }
+    id_to_change = '#button' + 1;
+    $.ajax({
+        type: "GET",
+        headers: {
+        },
+        url: url,
+        dataType: 'html',
+        success: function (data) {
+            $('#partial_view').html(data);
+        }
+    });
+    $(id_to_change).css({ "background-color": "grey" });
+    last_selection = -1;
+}

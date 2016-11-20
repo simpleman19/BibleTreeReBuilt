@@ -67,5 +67,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "BadgeEdit", new { id = Model.badge_id }) |
+    <a onclick="editBadge(@Model.badge_id)">Edit</a> |
+    <a onclick="changeTo(2)">Back to List</a>
 </p>
