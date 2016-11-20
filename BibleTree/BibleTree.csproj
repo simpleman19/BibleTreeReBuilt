@@ -349,6 +349,9 @@
     <Content Include="Scripts\student.selection.js" />
     <Content Include="Scripts\user.home.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Services\SQL\Administrator_GetActiveById.sql" />
+    <Content Include="Services\SQL\Administrator_GetAllActive.sql" />
+    <Content Include="Services\SQL\Administrator_GetDeleted.sql" />
     <Content Include="Services\SQL\Administrator_GetAll.sql" />
     <Content Include="Services\SQL\AwardedBadge_Delete.sql" />
     <Content Include="Services\SQL\AwardedBadge_GetAll.sql" />
@@ -359,6 +362,7 @@
     <Content Include="Services\SQL\Badge_InsertWithoutId.sql" />
     <Content Include="Services\SQL\Badge_Update.sql" />
     <Content Include="Services\SQL\Badge_InsertWithId.sql" />
+    <Content Include="Services\SQL\Faculty_GetDeleted.sql" />
     <Content Include="Services\SQL\Faculty_GetAll.sql" />
     <Content Include="Services\SQL\Badge_GetById.sql" />
     <Content Include="Services\SQL\Faculty_Update.sql" />
@@ -367,6 +371,7 @@
     <Content Include="Services\SQL\Administrator_Update.sql" />
     <Content Include="Services\SQL\Administrator_Insert.sql" />
     <Content Include="Services\SQL\Administrator_GetById.sql" />
+    <Content Include="Services\SQL\Student_GetDeleted.sql" />
     <Content Include="Services\SQL\Student_Update.sql" />
     <Content Include="Services\SQL\Student_Insert.sql" />
     <Content Include="Services\SQL\Student_GetAll.sql" />
@@ -374,9 +379,11 @@
     <Content Include="Services\SQL\Database_Create.sql" />
     <Content Include="Services\SQL\Database_Drop.sql" />
     <Content Include="Services\SQL\AwardedBadge_GetByUserId.sql" />
+    <Content Include="Services\SQL\User_GetDeleted.sql" />
     <Content Include="Services\SQL\User_GetByEmail.sql" />
     <Content Include="Services\SQL\User_GetByName.sql" />
     <Content Include="Services\SQL\User_InsertWithoutId.sql" />
+    <Content Include="Services\SQL\User_Delete.sql" />
     <Content Include="Services\SQL\User_Update.sql" />
     <Content Include="Services\SQL\User_InsertWithId.sql" />
     <Content Include="Services\SQL\User_GetAll.sql" />

@@ -1,2 +1,2 @@
 ﻿SELECT [awardedbadge].*, [badge].* 
-FROM [BibleTree].[dbo].[awardedbadge], [BibleTree].[dbo].[badge] 
+FROM [BibleTree].[dbo].[awardedbadge], [BibleTree].[dbo].[badge]

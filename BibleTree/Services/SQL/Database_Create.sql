@@ -45,7 +45,8 @@ CREATE TABLE [BibleTree].[dbo].[badge]
 	[badge_activeDate] datetime NOT NULL,
 	[badge_expirationDate] datetime NOT NULL,
 	[badge_gifURL] varchar(255), 
-	[badge_pngURL] varchar(255)
+	[badge_pngURL] varchar(255),
+	[badge_active] bit
 )
 GO
 
