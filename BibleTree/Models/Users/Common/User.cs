@@ -18,6 +18,8 @@ namespace BibleTree.Models
 
 	    public char user_type { get; set; }
 
+		public bool user_active { get; set; }
+
 	    public void mapUser(User u) {
 		    user_name = u.user_name;
 		    user_email = u.user_email;
