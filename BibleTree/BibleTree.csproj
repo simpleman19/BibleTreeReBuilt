@@ -347,7 +347,7 @@
     <Content Include="Scripts\responsive-tabs.js" />
     <Content Include="Scripts\badge.selection.js" />
     <Content Include="Scripts\student.selection.js" />
-    <Content Include="Scripts\tabs.js" />
+    <Content Include="Scripts\user.home.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Services\SQL\Administrator_GetAll.sql" />
     <Content Include="Services\SQL\AwardedBadge_Delete.sql" />
@@ -427,7 +427,6 @@
     <Content Include="Views\Badges\BadgeTree.cshtml" />
     <Content Include="Views\User\StudentList.cshtml" />
     <Content Include="Views\Modal\StudentSearch.cshtml" />
-    <Content Include="Views\User\StudentSearchModal.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\BadgeLevel.cshtml" />
     <Content Include="Views\Modal\BadgeSearch.cshtml" />
   </ItemGroup>
