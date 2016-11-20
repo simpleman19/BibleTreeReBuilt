@@ -13,7 +13,7 @@ function changeTo(number) {
         url = '/user/studentlist';
     } else if (number == 4) {
         url = '/user/facultylist';
-    } else if (number == 4) {
+    } else if (number == 5) {
         url = '/badges/sendbadge';
     }
 
