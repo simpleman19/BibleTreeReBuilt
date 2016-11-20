@@ -4,10 +4,11 @@ GO
 CREATE TABLE [BibleTree].[dbo].[user] 
 ( 
 	[user_id] int PRIMARY KEY IDENTITY(1,1) NOT NULL, 
-	[user_email] varchar(32) NOT NULL, 
+	[user_email] varchar(64) NOT NULL, 
 	[user_name] varchar(64) NOT NULL, 
 	[user_token] varchar(255), 
-	[user_type] char 
+	[user_type] char,
+	[user_active] bit
 )
 GO
 
@@ -23,8 +24,8 @@ GO
 CREATE TABLE [BibleTree].[dbo].[faculty] 
 ( 
 	[user_id] int PRIMARY KEY FOREIGN KEY REFERENCES [user]([user_id]) NOT NULL, 
-	[faculty_department] varchar(32), 
-	[faculty_position] varchar(32) 
+	[faculty_department] varchar(64), 
+	[faculty_position] varchar(64) 
 )
 GO
 
@@ -38,13 +39,14 @@ GO
 CREATE TABLE [BibleTree].[dbo].[badge] 
 ( 
 	[badge_id] int PRIMARY KEY IDENTITY(1,1) NOT NULL, 
-	[badge_name] varchar(32) NOT NULL, 
+	[badge_name] varchar(64) NOT NULL, 
 	[badge_description] varchar(255), 
 	[badge_level] int NOT NULL, 
 	[badge_activeDate] datetime NOT NULL,
 	[badge_expirationDate] datetime NOT NULL,
 	[badge_gifURL] varchar(255), 
-	[badge_pngURL] varchar(255)
+	[badge_pngURL] varchar(255),
+	[badge_active] bit
 )
 GO
 

@@ -12,7 +12,8 @@ INSERT INTO [BibleTree].[dbo].[user]
 	[user_email],
 	[user_name],
 	[user_token],
-	[user_type]
+	[user_type],
+	[user_active]
 )
 VALUES
 (
@@ -20,7 +21,8 @@ VALUES
 	@user_email,
 	@user_name,
 	@user_token,
-	@user_type
+	@user_type,
+	1
 )
 SET IDENTITY_INSERT [BibleTree].[dbo].[user] OFF
 END
@@ -30,7 +32,8 @@ ELSE
 BEGIN
 UPDATE [BibleTree].[dbo].[user]
 SET
-	[user_type] = 'f'
+	[user_type] = 'f',
+	[user_active] = 1
 WHERE [user].[user_id] = @user_id
 END
 GO
