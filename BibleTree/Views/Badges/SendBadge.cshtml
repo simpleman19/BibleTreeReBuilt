@@ -7,36 +7,32 @@
 <script src="~/Scripts/badge.selection.js"></script>
 <script src="~/browser_components/datatables/js/jquery.dataTables.js"></script>
 <link rel="stylesheet" href="~/browser_components/datatables/css/dataTables.bootstrap.css">
+<script src="~/Scripts/student.selection.js"></script>
 
 <script>
+
+	var buttID;
+
+	function saveButtonID(clicked_id){
+		//saving the id of pressed button.
+		buttID = clicked_id;
+		selectStudent();
+		}
         function finishedBadgeSelection() {
             // Do something after badge is selected
             alert('You clicked on badge id: ' + badge_selection);
 			$('#button2').val(badge_selection);
         }
-		var buttID;
-
-		function saveButtonID(clicked_id){
-		//saving the id of pressed button.
-		buttID = clicked_id;
-		selectStudent();
-		}
-
-</script>
-
-
-<script src="~/Scripts/student.selection.js"></script>
-
-<script>
 
     function finishedStudentSelection() {
         // Do something after user is selected
         alert('You clicked on user id: ' + student_selection);
-		if (buttID = 'button4'){
+		if (buttID == "button4"){
+		alert("ante");
 		$('#button4').val(student_selection);
 		}
 		else 
-			$('#button3').val(student_selection);
+			{$('#button3').val(student_selection);}
     }
 
 </script>
