@@ -32,7 +32,8 @@ ELSE
 BEGIN
 UPDATE [BibleTree].[dbo].[user]
 SET
-	[user_type] = 'a'
+	[user_type] = 'a',
+	[user_active] = 1
 WHERE [user].[user_id] = @user_id
 END
 GO

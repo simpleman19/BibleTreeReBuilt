@@ -5,3 +5,4 @@ SET
 	[user_token] = @user_token,
 	[user_type] = @user_type
 WHERE [user].[user_id] = @user_id
+	AND [user].[user_active] = 1

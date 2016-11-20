@@ -1,6 +1,5 @@
 ﻿UPDATE [BibleTree].[dbo].[badge]
 SET 
-	[badge_id] = @badge_id,
 	[badge_name] = @badge_name,
 	[badge_description] = @badge_description,
 	[badge_level] = @badge_level,
