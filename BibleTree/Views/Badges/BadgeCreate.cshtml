@@ -74,11 +74,21 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="button" value="Create" class="btn btn-default" onclick="createBadge()"/>
             </div>
         </div>
     </div>
 }
+
+<script>
+    function createBadge() {
+        form = "form";
+        action = $(form).attr("action");
+        $.post(action, $(form).serialize()).done(function (data) {
+            changeTo(2);
+        });
+    }
+</script>
 
 <div>
     @Html.ActionLink("Back to List", "Index")

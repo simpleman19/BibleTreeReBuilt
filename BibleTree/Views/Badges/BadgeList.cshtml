@@ -13,6 +13,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.badge_id)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.badge_name)
         </th>
         <th>
@@ -24,14 +27,14 @@
         <th>
             @Html.DisplayNameFor(model => model.badge_description)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.badge_id)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.badge_id)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.badge_name)
         </td>
@@ -44,11 +47,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.badge_description)
         </td>
+
         <td>
-            @Html.DisplayFor(modelItem => item.badge_id)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            <a onclick="editBadge(@item.badge_id)">Edit</a> |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
