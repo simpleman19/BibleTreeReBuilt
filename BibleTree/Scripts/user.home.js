@@ -14,10 +14,12 @@ function changeTo(number) {
     } else if (number == 4) {
         url = '/user/facultylist';
     }
+
     for (i = 0; i < 5; i++) {
         id_to_change = '#button' + i;
         $(id_to_change).css({ "background-color": "white" });
     }
+
     id_to_change = '#button' + number;
     $.ajax({
         type: "GET",
