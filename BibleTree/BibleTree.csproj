@@ -430,6 +430,7 @@
     <Content Include="Views\User\StudentSearchModal.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\BadgeLevel.cshtml" />
     <Content Include="Views\Modal\BadgeSearch.cshtml" />
+    <Content Include="Views\User\FacultyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
