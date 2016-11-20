@@ -355,6 +355,7 @@
     <Content Include="Services\SQL\AwardedBadge_Update.sql" />
     <Content Include="Services\SQL\AwardedBadge_Insert.sql" />
     <Content Include="Services\SQL\Badge_GetAll.sql" />
+    <Content Include="Services\SQL\Badge_GetByObject.sql" />
     <Content Include="Services\SQL\Badge_InsertWithoutId.sql" />
     <Content Include="Services\SQL\Badge_Update.sql" />
     <Content Include="Services\SQL\Badge_InsertWithId.sql" />

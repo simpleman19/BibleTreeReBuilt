@@ -29,7 +29,7 @@ namespace BibleTree.Models
 		[DisplayName("Badge Level")] public Badge_Level badge_level { get; set; }
 
 		public override string ToString() {
-			return "{ badge_id:'" + badge_id + "' badge_name:'" + badge_name + "' badge_description:'" + badge_description + "' badge_activeDate:'" + badge_activeDate + "' badge_expirationDate:'" + badge_expirationDate + "'}";
+			return "{ badge_id:'" + badge_id + "' badge_name:'" + badge_name + "' badge_description:'" + badge_description + "' badge_activeDate:'" + badge_activeDate + "' badge_expirationDate:'" + badge_expirationDate + "' badge_level:'" + badge_level + "'}";
 		}
 
     }
