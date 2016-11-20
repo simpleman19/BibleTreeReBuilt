@@ -17,19 +17,19 @@ namespace BibleTree.Models
 
         [DisplayName("Active Date")]
         [DataType(DataType.Date)]//changed line
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
         public DateTime badge_activeDate { get; set; }
 
         [DisplayName("Expire Date")]
         [DataType(DataType.Date)]//changed line
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
         public DateTime badge_expirationDate { get; set; }
 
 		[Dapper.Contrib.Extensions.Key] public long badge_id { get; set; }
 		[DisplayName("Badge Level")] public Badge_Level badge_level { get; set; }
 
 		public override string ToString() {
-			return "{ badge_id:'" + badge_id + "' badge_name:'" + badge_name + "' badge_description:'" + badge_description + "' badge_activeDate:'" + badge_activeDate + "' badge_expirationDate:'" + badge_expirationDate + "'}";
+			return "{ badge_id:'" + badge_id + "' badge_name:'" + badge_name + "' badge_description:'" + badge_description + "' badge_activeDate:'" + badge_activeDate + "' badge_expirationDate:'" + badge_expirationDate + "' badge_level:'" + badge_level + "'}";
 		}
 
     }
