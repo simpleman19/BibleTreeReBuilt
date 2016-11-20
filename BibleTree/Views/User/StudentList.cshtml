@@ -7,8 +7,10 @@
 
 <h2>StudentList</h2>
 
+@*TODO add a search&filter utility*@
+
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add New", "AddStudent")
 </p>
 <table class="table">
     <tr>
@@ -17,15 +19,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.user_email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.user_token)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.user_id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.user_type)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.student_id)
@@ -48,15 +41,6 @@
             @Html.DisplayFor(modelItem => item.user_email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.user_token)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_type)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.student_id)
         </td>
         <td>
@@ -66,9 +50,9 @@
             @Html.DisplayFor(modelItem => item.student_dateGraduated)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "EditStudent", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "StudentDetails", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "DeleteStudent", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }
