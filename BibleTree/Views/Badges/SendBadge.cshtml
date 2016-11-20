@@ -12,7 +12,15 @@
         function finishedBadgeSelection() {
             // Do something after badge is selected
             alert('You clicked on badge id: ' + badge_selection);
+			$('#button2').val(badge_selection);
         }
+		var buttID;
+
+		function saveButtonID(clicked_id){
+		//saving the id of pressed button.
+		buttID = clicked_id;
+		selectStudent();
+		}
 
 </script>
 
@@ -24,6 +32,11 @@
     function finishedStudentSelection() {
         // Do something after user is selected
         alert('You clicked on user id: ' + student_selection);
+		if (buttID = 'button4'){
+		$('#button4').val(student_selection);
+		}
+		else 
+			$('#button3').val(student_selection);
     }
 
 </script>
@@ -46,21 +59,21 @@
         <div class="form-group">
             @Html.LabelFor(model => model.sender_id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               			   <button class="tabbing col-sm-3" id="button4" onclick="selectStudent()">Select Student</button>
+               	<input type="button" class="col-sm-3" id="button4" value="Select Student" onclick="saveButtonID(this.id)"/>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.recipient_id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-			   <input type="button" class="col-sm-3" id="button4" value="Select Student" onclick="selectStudent()"/>
+			   <input type="button" class="col-sm-3" id="button3" value="Select Student" onclick="saveButtonID(this.id)"/>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.badge_id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               <button class="tabbing col-sm-3" id="button4" onclick="selectBadge()">Select Badge</button>
+               <input type="button" class="col-sm-3" id="button2" value="Select Badge" onclick="selectBadge()"/>
             </div>
         </div>
 
@@ -75,4 +88,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-<button class="tabbing col-sm-3" id="button4" onclick="selectBadge()">Select Badge</button>
