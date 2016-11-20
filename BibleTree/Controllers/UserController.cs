@@ -20,7 +20,7 @@ namespace BibleTree.Controllers
             return View(badge);
         }
 
-        public ActionResult UserList()
+        public ActionResult StudentList()
         {
             SQLService database = new SQLService();
             var userList = database.GetStudents();

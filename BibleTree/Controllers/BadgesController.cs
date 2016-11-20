@@ -47,13 +47,8 @@ namespace BibleTree.Controllers
 
         public ActionResult BadgeEdit(int Id)
         {
-            // Database call to get one with id
-            BadgeType badge = new BadgeType();
-            badge.badge_description = "Testing Description";
-            badge.badge_name = "Badge Name";
-            badge.badge_id = 1;
-            badge.badge_activeDate = new DateTime(2016, 10, 4);
-            badge.badge_expirationDate = new DateTime(2016, 10, 20);
+            SQLService db = new SQLService();
+            BadgeType badge = db.GetBadgeById(Id);
 
             if (Request.IsAjaxRequest())
             {
@@ -64,7 +59,14 @@ namespace BibleTree.Controllers
                 return View(badge);
             }
         }
-        
+
+        [HttpPost]
+        public void BadgeEdit(BadgeType badge)
+        {
+            SQLService database = new SQLService();
+            database.UpdateBadge(badge);
+        }
+
         public ActionResult BadgeView(int id)
         {
             BadgeType badge = new BadgeType();

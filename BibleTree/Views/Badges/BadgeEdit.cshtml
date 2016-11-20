@@ -14,16 +14,16 @@
     <div class="form-horizontal">
         <h4>BadgeType</h4>
         <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.badge_id)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.badge_id)
-            </dd>
-        </dl>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <div class="form-group" style="display: none;">
+            @Html.LabelFor(model => model.badge_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.badge_id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.badge_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.badge_name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -33,18 +33,34 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.badge_availability.start_availability_date, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.badge_description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.badge_availability.start_availability_date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.badge_availability.start_availability_date, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.badge_description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.badge_description, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.badge_availability.end_availability_date, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.badge_level, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.badge_availability.end_availability_date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.badge_availability.end_availability_date, "", new { @class = "text-danger" })
+                @Html.EnumDropDownListFor(model => model.badge_level, "Select a Level", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.badge_level, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.badge_activeDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.badge_activeDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.badge_activeDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.badge_expirationDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.badge_expirationDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.badge_expirationDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -63,23 +79,23 @@
                 @Html.ValidationMessageFor(model => model.badge_gifURL, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.badge_description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.badge_description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.badge_description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="button" value="Save" class="btn btn-default" onclick="saveBadge()"/>
             </div>
         </div>
     </div>
 }
 
+<script>
+    function saveBadge() {
+        form = "form";
+        action = $(form).attr("action");
+        $.post(action, $(form).serialize()).done(function (data) {
+            changeTo(2);
+        });
+    }
+</script>
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
