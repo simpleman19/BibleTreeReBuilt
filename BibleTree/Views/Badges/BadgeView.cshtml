@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "View";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>View</h2>
@@ -20,19 +19,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.badge_availability.start_availability_date)
+            @Html.DisplayNameFor(model => model.badge_activeDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.badge_availability.start_availability_date)
+            @Html.DisplayFor(model => model.badge_activeDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.badge_availability.end_availability_date)
+            @Html.DisplayNameFor(model => model.badge_expirationDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.badge_availability.end_availability_date)
+            @Html.DisplayFor(model => model.badge_expirationDate)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.badge_pngURL)
@@ -68,6 +67,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "BadgeEdit", new { id = Model.badge_id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a onclick="editBadge(@Model.badge_id)">Edit</a> |
+    <a onclick="changeTo(2)">Back to List</a>
 </p>

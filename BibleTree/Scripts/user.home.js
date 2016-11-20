@@ -13,11 +13,15 @@ function changeTo(number) {
         url = '/user/studentlist';
     } else if (number == 4) {
         url = '/user/facultylist';
+    } else if (number == 4) {
+        url = '/badges/sendbadge';
     }
-    for (i = 0; i < 5; i++) {
+
+    for (i = 0; i < 6; i++) {
         id_to_change = '#button' + i;
         $(id_to_change).css({ "background-color": "white" });
     }
+
     id_to_change = '#button' + number;
     $.ajax({
         type: "GET",
@@ -39,6 +43,28 @@ function editBadgeGetId() {
 
 function editBadge(id) {
     var url = '/badges/badgeedit/' + id;
+    for (i = 0; i < 5; i++) {
+        id_to_change = '#button' + i;
+        $(id_to_change).css({ "background-color": "white" });
+    }
+    id_to_change = '#button' + 1;
+    $.ajax({
+        type: "GET",
+        headers: {
+        },
+        url: url,
+        dataType: 'html',
+        success: function (data) {
+            $('#partial_view').html(data);
+        }
+    });
+    $(id_to_change).css({ "background-color": "grey" });
+    last_selection = -1;
+}
+
+function badgeDetail(id) {
+    last_selection = 2;
+    var url = '/badges/badgeview/' + id;
     for (i = 0; i < 5; i++) {
         id_to_change = '#button' + i;
         $(id_to_change).css({ "background-color": "white" });
