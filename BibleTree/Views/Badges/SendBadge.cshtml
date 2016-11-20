@@ -4,7 +4,39 @@
     ViewBag.Title = "SendBadge";
 }
 
+<script src="~/Scripts/badge.selection.js"></script>
+<script src="~/browser_components/datatables/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" href="~/browser_components/datatables/css/dataTables.bootstrap.css">
+
+<script>
+        function finishedBadgeSelection() {
+            // Do something after badge is selected
+            alert('You clicked on badge id: ' + badge_selection);
+        }
+
+</script>
+
+
+<script src="~/Scripts/student.selection.js"></script>
+
+<script>
+
+    function finishedStudentSelection() {
+        // Do something after user is selected
+        alert('You clicked on user id: ' + student_selection);
+    }
+
+</script>
+
+<div id="modal">
+
+</div>
+
+
+
 <h2>SendBadge</h2>
+
+
 
 @using (Html.BeginForm())
 {
@@ -14,24 +46,21 @@
         <div class="form-group">
             @Html.LabelFor(model => model.sender_id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.sender_id, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.sender_id, "", new { @class = "text-danger" })
+               			   <button class="tabbing col-sm-3" id="button4" onclick="selectStudent()">Select Student</button>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.recipient_id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.recipient_id, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.recipient_id, "", new { @class = "text-danger" })
+			   <button class="tabbing col-sm-3" id="button4" onclick="selectStudent()">Select Student</button>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.badge_id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.badge_id, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.badge_id, "", new { @class = "text-danger" })
+               <button class="tabbing col-sm-3" id="button4" onclick="selectBadge()">Select Badge</button>
             </div>
         </div>
 
@@ -46,3 +75,4 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<button class="tabbing col-sm-3" id="button4" onclick="selectBadge()">Select Badge</button>
