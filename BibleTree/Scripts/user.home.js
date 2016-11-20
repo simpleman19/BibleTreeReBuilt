@@ -13,9 +13,11 @@ function changeTo(number) {
         url = '/user/studentlist';
     } else if (number == 4) {
         url = '/user/facultylist';
+    } else if (number == 4) {
+        url = '/badges/sendbadge';
     }
 
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < 6; i++) {
         id_to_change = '#button' + i;
         $(id_to_change).css({ "background-color": "white" });
     }
