@@ -55,7 +55,7 @@ CREATE TABLE [BibleTree].[dbo].[awardedbadge]
 	[award_id] int PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	[user_id] int FOREIGN KEY REFERENCES [user]([user_id]) NOT NULL,
 	[badge_id] int FOREIGN KEY REFERENCES [badge]([badge_id]) NOT NULL, 
-	[award_sentId] int FOREIGN KEY REFERENCES [user]([user_id]) NOT NULL, 
+	[award_sentid] int FOREIGN KEY REFERENCES [user]([user_id]) NOT NULL, 
 	[award_date] date NOT NULL, 
 	[award_comment] varchar(255)
 )

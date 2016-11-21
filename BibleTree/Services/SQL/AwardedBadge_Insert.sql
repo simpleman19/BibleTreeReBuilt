@@ -2,7 +2,7 @@
 (
 	[user_id], 
 	[badge_id], 
-	[award_sentId], 
+	[award_sentid], 
 	[award_date], 
 	[award_comment]
 )
