@@ -21,18 +21,18 @@
         function finishedBadgeSelection() {
             // Do something after badge is selected
             alert('You clicked on badge id: ' + badge_selection);
-			$('#button2').val(badge_selection);
+			$('#badge_button').val(badge_selection);
         }
 
     function finishedStudentSelection() {
         // Do something after user is selected
         alert('You clicked on user id: ' + student_selection);
-		if (buttID == "button4"){
+		if (buttID == "sender_button"){
 		alert("ante");
-		$('#button4').val(student_selection);
+		$('#sender_button4').val(student_selection);
 		}
 		else 
-			{$('#button3').val(student_selection);}
+			{$('#receipient_button').val(student_selection);}
     }
 
 </script>
@@ -55,21 +55,21 @@
         <div class="form-group">
             @Html.LabelFor(model => model.sender_id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               	<input type="button" class="col-sm-3" id="button4" value="Select Student" onclick="saveButtonID(this.id)"/>
+               	<input type="button" class="col-sm-3" id="sender_button" value="Select Student" onclick="saveButtonID(this.id)"/>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.recipient_id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-			   <input type="button" class="col-sm-3" id="button3" value="Select Student" onclick="saveButtonID(this.id)"/>
+			   <input type="button" class="col-sm-3" id="receipient_button" value="Select Student" onclick="saveButtonID(this.id)"/>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.badge_id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               <input type="button" class="col-sm-3" id="button2" value="Select Badge" onclick="selectBadge()"/>
+               <input type="button" class="col-sm-3" id="badge_button" value="Select Badge" onclick="selectBadge()"/>
             </div>
         </div>
 

@@ -446,6 +446,7 @@
     <Content Include="Views\Shared\EditorTemplates\BadgeLevel.cshtml" />
     <Content Include="Views\Modal\BadgeSearch.cshtml" />
     <Content Include="Views\User\FacultyList.cshtml" />
+    <Content Include="Views\Badges\StudentBadges.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

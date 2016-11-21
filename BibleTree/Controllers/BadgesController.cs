@@ -115,5 +115,9 @@ namespace BibleTree.Controllers
                 return View(badgeList);
             }
         }
+        public ActionResult StudentBadges(int id)
+        {
+            return View();
+        }
     }
 }
