@@ -12,12 +12,13 @@ namespace BibleTree.Controllers
     {
         public ActionResult UserHome()
         {
-            BadgeType badge = new BadgeType();
-            badge.badge_description = "Testing Description";
-            badge.badge_name = "Badge Name";
-            badge.badge_id = 1;
+            return View();
+        }
 
-            return View(badge);
+        public ActionResult StudentHome()
+        {
+
+            return View();
         }
 
         public ActionResult StudentList()

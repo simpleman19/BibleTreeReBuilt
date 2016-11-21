@@ -3,11 +3,8 @@
 @{
     ViewBag.Title = "View";
 }
-
-<h2>View</h2>
-
 <div>
-    <h4>BadgeType</h4>
+    <h4>Badge Details</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -68,5 +65,5 @@
 </div>
 <p>
     <a onclick="editBadge(@Model.badge_id)">Edit</a> |
-    <a onclick="changeTo(2)">Back to List</a>
+    <a onclick="listBadges()">Back to List</a>
 </p>

@@ -4,14 +4,13 @@
     ViewBag.Title = "BadgeCreate";
 }
 
-<h2>BadgeCreate</h2>
+<h2>Create a new Badge</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>BadgeType</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -80,11 +79,29 @@
 }
 
 <script>
+        @functions{
+            public string TokenHeaderValue()
+            {
+                string cookieToken, formToken;
+                AntiForgery.GetTokens(null, out cookieToken, out formToken);
+                return cookieToken + ":" + formToken;                
+            }
+        }
     function createBadge() {
         form = "form";
         action = $(form).attr("action");
-        $.post(action, $(form).serialize()).done(function (data) {
-            changeTo(2);
+        dataToSend = $(form).serialize();
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: action,
+            headers: {
+                'RequestVerificationToken': '@TokenHeaderValue()'
+            },
+            data: dataToSend,
+            success: function (data) {
+                changeTo(2);
+            }
         });
     }
 </script>
