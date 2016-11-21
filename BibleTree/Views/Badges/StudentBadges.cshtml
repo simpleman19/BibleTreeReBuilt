@@ -1,17 +1,82 @@
-﻿@{
-    Layout = null;
+﻿@model BibleTree.Models.Student
+@{
+    ViewBag.Title = "StudentBadges";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
+@using (Html.BeginForm())
+{}
+    @Html.AntiForgeryToken()
     
-    </div>
-</body>
-</html>
+    <div class="form-horizontal">
+        <h4>Student Badges</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <div class="form-group" style="display: none;">
+            @Html.LabelFor(model => model.student_id, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+               	
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.student_dateEnrolled, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+               	
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.student_dateGraduated, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+               	
+            </div>
+        </div>
+
+		<table class="table">
+    <tr>
+        <th>
+           Badge ID
+        </th>
+        <th>
+            Sender Id
+        </th>
+        <th>
+            Receipient ID
+        </th>
+        <th>
+           Time Stamp
+        </th>
+        <th>
+           Comment
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.badgeList) {
+    <tr>
+        <td>
+            @Html.DisplayFor(item => item.badge_id)
+        </td>
+        <td>
+            @Html.DisplayFor(item => item.sender_id)
+        </td>
+        <td>
+            @Html.DisplayFor(item => item.recipient_id)
+        </td>
+        <td>
+            @Html.DisplayFor(item => item.time_stamp)
+        </td>
+        <td>
+            @Html.DisplayFor(item => item.comment)
+        </td>
+
+        <td>
+            <a onclick="editBadge(@item.badge_id)">Edit</a> |
+            <a onclick="badgeDetail(@item.badge_id)">Details</a> |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
