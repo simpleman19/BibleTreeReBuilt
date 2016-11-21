@@ -93,7 +93,7 @@ namespace BibleTree.Controllers
         {
             if (Request.IsAjaxRequest())
             {
-                return PartialView("BadgeSend");
+                return PartialView("SendBadge");
             }
             else
             {
