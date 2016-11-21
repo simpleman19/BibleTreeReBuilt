@@ -4,7 +4,7 @@
     ViewBag.Title = "BadgeEdit";
 }
 
-<h2>BadgeEdit</h2>
+<h2>Edit a Badge/h2>
 
 @using (Html.BeginForm())
 {
@@ -87,11 +87,29 @@
 }
 
 <script>
+            @functions{
+                public string TokenHeaderValue()
+                {
+                    string cookieToken, formToken;
+                    AntiForgery.GetTokens(null, out cookieToken, out formToken);
+                    return cookieToken + ":" + formToken;                
+                }
+            }
     function saveBadge() {
         form = "form";
         action = $(form).attr("action");
-        $.post(action, $(form).serialize()).done(function (data) {
-            changeTo(2);
+        dataToSend = $(form).serialize();
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: action,
+            headers: {
+                'RequestVerificationToken': '@TokenHeaderValue()'
+            },
+            data: dataToSend,
+            success: function (data) {
+                changeTo(2);
+            }
         });
     }
 </script>
