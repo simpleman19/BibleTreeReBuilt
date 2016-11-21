@@ -8,52 +8,75 @@
 <h2>List of Badges</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a onclick="createBadge()">Create a new Badge</a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.badge_id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.badge_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.badge_pngURL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.badge_gifURL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.badge_description)
-        </th>
-        <th></th>
-    </tr>
+<table class="table" id="badge_list">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.badge_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.badge_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.badge_pngURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.badge_gifURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.badge_description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.badge_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.badge_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.badge_pngURL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.badge_gifURL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.badge_description)
+                </td>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.badge_id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.badge_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.badge_pngURL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.badge_gifURL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.badge_description)
-        </td>
-
-        <td>
-            <a onclick="editBadge(@item.badge_id)">Edit</a> |
-            <a onclick="badgeDetail(@item.badge_id)">Details</a> |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
-
+                <td>
+                    <a onclick="editBadge(@item.badge_id)">Edit</a> |
+                    <a onclick="badgeDetail(@item.badge_id)">Details</a> |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+<script>
+    $(document).ready(function () {
+        badge_table = $('#badge_list').DataTable({
+            "dom": '<"pull-left"f><"pull-right"l>tip',
+            "paging": false,
+            "columnDefs": [
+                {
+                    "targets": [0],
+                    "visible": false,
+                    "searchable": false
+                }
+            ],
+            language: {
+                searchPlaceholder: "Search Students"
+            }
+        });
+    }());
+
+</script>
