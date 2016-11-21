@@ -174,14 +174,24 @@ namespace BibleTree.Controllers
 
         public ActionResult SendBadge()
         {
+            BadgeInstance badge = new BadgeInstance();
+    
             if (Request.IsAjaxRequest())
             {
-                return PartialView("SendBadge");
+                return PartialView("SendBadge", badge);
             }
             else
             {
-                return View();
+                return View(badge);
             }
+        }
+
+        // POST: Badges
+        [HttpPost]
+        public void SendBadge(BadgeInstance badge)
+        {
+            SQLService database = new SQLService();
+            database.AssignAward(badge);
         }
 
         public ActionResult BadgeList()
@@ -200,7 +210,26 @@ namespace BibleTree.Controllers
         }
         public ActionResult StudentBadges(int id)
         {
-            return View();
+            SQLService db = new SQLService();
+            Student student = new Student();
+
+            if (id != 0)
+            {
+                student = db.GetStudentById(id);
+            }
+            else
+            {
+                student = db.GetStudentById(1);
+            }
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("StudentBadges", student);
+            }
+            else
+            {
+                return View(student);
+            }
         }
     }
 }
