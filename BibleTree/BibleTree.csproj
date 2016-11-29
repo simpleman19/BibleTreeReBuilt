@@ -355,6 +355,7 @@
     <Content Include="Services\SQL\Administrator_GetAll.sql" />
     <Content Include="Services\SQL\AwardedBadge_Delete.sql" />
     <Content Include="Services\SQL\AwardedBadge_GetAll.sql" />
+    <Content Include="Services\SQL\AwardedBadge_UpdateCoordinates.sql" />
     <Content Include="Services\SQL\AwardedBadge_Update.sql" />
     <Content Include="Services\SQL\AwardedBadge_Insert.sql" />
     <Content Include="Services\SQL\Badge_GetAll.sql" />

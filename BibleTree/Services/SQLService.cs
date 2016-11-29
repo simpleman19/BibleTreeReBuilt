@@ -411,6 +411,25 @@ namespace BibleTree.Services {
 				).AsList();
 			}
 		}
+		public void UpdateAward(BadgeInstance awardedbadge) {
+			using (var db = connect()) {
+				db.Execute(ScriptService.Scripts["awardedbadge_update"], awardedbadge);
+			}
+		}
+		public void UpdateAwardCoordinates(BadgeInstance awardedbadge) {
+			using (var db = connect()) {
+				db.Execute(ScriptService.Scripts["awardedbadge_updatecoordinates"], awardedbadge);
+			}
+		}
+		public void UpdateAwardCoordinates(int award_id, int xcoord, int ycoord) {
+			using (var db = connect()) {
+				BadgeInstance awardedbadge = new BadgeInstance();
+				awardedbadge.award_id = award_id;
+				awardedbadge.award_xcoord = xcoord;
+				awardedbadge.award_ycoord = ycoord;
+				db.Execute(ScriptService.Scripts["awardedbadge_updatecoordinates"], awardedbadge);
+			}
+		}
 		public void AssignAward(BadgeInstance awardedbadge) {
 			using (var db = connect()) {
 				db.Execute(ScriptService.Scripts["awardedbadge_insert"], awardedbadge);
