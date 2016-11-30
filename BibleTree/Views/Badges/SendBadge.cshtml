@@ -22,11 +22,9 @@
             // Do something after badge is selected
 			$('#badge_button').val(badge_selection);
         }
-    var user_name;
 
     function finishedStudentSelection() {
-       
-       {$('#receipient_button').val(user_name + " " +student_selection);}
+        $('#receipient_button').val(student_selection);
     }
 
 </script>
@@ -71,7 +69,7 @@
 		<div class="form-group">
             @Html.LabelFor(model => model.award_comment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-				@Html.TextArea("Description", null,htmlAttributes: new { @class = "form-control col-md-2" })  
+				@Html.TextArea("Description", null,htmlAttributes: new { @class = "form-control col-md-2", @id="comment"})  
             </div>
         </div>
 
@@ -96,7 +94,7 @@
         form = "#sendform";
         action = $(form).attr("action");
         token = $('input[name="__RequestVerificationToken"]').val();
-        var formData = {'__RequestVerificationToken': token, badge_id: 1, award_sentid: 2, user_id: 3, award_comment: "Testing"};
+        var formData = {'__RequestVerificationToken': token, badge_id: badge_selection, award_sentid:1 , user_id: student_selection, award_comment: $("#comment").val()};
 
         $.ajax({
             type: "POST",
@@ -104,7 +102,11 @@
             url: action,
             data: formData,
             success: function (data) {
- 
+                alert("Badge sent successfully");
+                sendBadge();
+            },
+            error: function (data) {
+                alert("This badge did not send successfully");
             }
         });
     }
