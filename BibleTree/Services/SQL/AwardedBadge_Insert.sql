@@ -2,8 +2,8 @@
 (
 	[user_id], 
 	[badge_id], 
-	[award_sentId], 
-	[award_date], 
+	[award_sentid], 
+	[award_timestamp], 
 	[award_comment]
 )
 VALUES 
@@ -11,6 +11,6 @@ VALUES
 	@user_id,
 	@badge_id,
 	@award_sentid,
-	@award_date,
+	@award_timestamp,
 	@award_comment
 );

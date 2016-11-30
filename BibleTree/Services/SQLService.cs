@@ -66,10 +66,44 @@ namespace BibleTree.Services {
 				return db.Query<User>(ScriptService.Scripts["user_getbyid"], new {user_id = user_id}).FirstOrDefault();
 			}
 		}
+		public User GetUserByName(string user_name) {
+			using (var db = connect()) {
+				return db.Query<User>(ScriptService.Scripts["user_getbyname"], new { user_name = user_name }).FirstOrDefault();
+			}
+		}
+		public User GetActiveUserByName(string user_name) {
+			using (var db = connect()) {
+				return db.Query<User>(ScriptService.Scripts["user_getactivebyname"], new { user_name = user_name }).FirstOrDefault();
+			}
+		}
+		public User GetUserByEmail(string user_email) {
+			using (var db = connect()) {
+				return db.Query<User>(ScriptService.Scripts["user_getbyemail"], new { user_email = user_email }).FirstOrDefault();
+			}
+		}
+		public User GetActiveUserByEmail(string user_email) {
+			using (var db = connect()) {
+				return db.Query<User>(ScriptService.Scripts["user_getactivebyemail"], new { user_email = user_email }).FirstOrDefault();
+			}
+		}
+		public User GetActiveUserById(int user_id) {
+			using (var db = connect()) {
+				return db.Query<User>(ScriptService.Scripts["user_getactivebyid"], new { user_id = user_id }).FirstOrDefault();
+			}
+		}
 		public List<User> GetUsers() {
 			using (var db = connect()) {
-				//return db.GetAll<User>().AsList();
 				return db.Query<User>(ScriptService.Scripts["user_getall"]).AsList();
+			}
+		}
+		public List<User> GetActiveUsers() {
+			using (var db = connect()) {
+				return db.Query<User>(ScriptService.Scripts["user_getallactive"]).AsList();
+			}
+		}
+		public List<User> GetDeletedUsers() {
+			using (var db = connect()) {
+				return db.Query<User>(ScriptService.Scripts["user_getdeleted"]).AsList();
 			}
 		}
 		public void AddUserWithId(User user) {
@@ -85,6 +119,11 @@ namespace BibleTree.Services {
 		public void UpdateUser(User user) {
 			using (var db = connect()) {
 				db.Execute(ScriptService.Scripts["user_update"], user);
+			}
+		}
+		public void DeleteUser(User user) {
+			using (var db = connect()) {
+				db.Execute(ScriptService.Scripts["user_delete"], user);
 			}
 		}
 		#endregion
@@ -106,9 +145,43 @@ namespace BibleTree.Services {
 				).FirstOrDefault();
 			}
 		}
+		public Student GetActiveStudentById(int user_id) {
+			using (var db = connect()) {
+				return db.Query<Student, User, Student>(ScriptService.Scripts["student_getactivebyid"],
+					(s, u) => {
+						s.mapUser(u);
+						return s;
+					},
+					new { User_id = user_id },
+					splitOn: "user_id"
+				).FirstOrDefault();
+			}
+		}
 		public List<Student> GetStudents() {
 			using (var db = connect()) {
 				return db.Query<Student, User, Student>(ScriptService.Scripts["student_getall"],
+					(s, u) => {
+						s.mapUser(u);
+						return s;
+					},
+					splitOn: "user_id"
+				).AsList();
+			}
+		}
+		public List<Student> GetDeletedStudents() {
+			using (var db = connect()) {
+				return db.Query<Student, User, Student>(ScriptService.Scripts["student_getdeleted"],
+					(s, u) => {
+						s.mapUser(u);
+						return s;
+					},
+					splitOn: "user_id"
+				).AsList();
+			}
+		}
+		public List<Student> GetActiveStudents() {
+			using (var db = connect()) {
+				return db.Query<Student, User, Student>(ScriptService.Scripts["student_getallactive"],
 					(s, u) => {
 						s.mapUser(u);
 						return s;
@@ -124,7 +197,7 @@ namespace BibleTree.Services {
 		}
 		public void UpdateStudent(Student student) {
 			using (var db = connect()) {
-				throw new NotImplementedException();
+				ScriptService.Execute(db, "student_update", student);
 			}
 		}
 		#endregion
@@ -146,9 +219,43 @@ namespace BibleTree.Services {
 				).FirstOrDefault();
 			}
 		}
+		public Administrator GetActiveAdministratorById(int user_id) {
+			using (var db = connect()) {
+				return db.Query<Administrator, User, Administrator>(ScriptService.Scripts["administrator_getactivebyid"],
+					(a, u) => {
+						a.mapUser(u);
+						return a;
+					},
+					new { User_id = user_id },
+					splitOn: "user_id"
+				).FirstOrDefault();
+			}
+		}
 		public List<Administrator> GetAdministrators() {
 			using (var db = connect()) {
 				return db.Query<Administrator, User, Administrator>(ScriptService.Scripts["administrator_getall"],
+					(a, u) => {
+						a.mapUser(u);
+						return a;
+					},
+					splitOn: "user_id"
+				).AsList();
+			}
+		}
+		public List<Administrator> GetActiveAdministrators() {
+			using (var db = connect()) {
+				return db.Query<Administrator, User, Administrator>(ScriptService.Scripts["administrator_getallactive"],
+					(a, u) => {
+						a.mapUser(u);
+						return a;
+					},
+					splitOn: "user_id"
+				).AsList();
+			}
+		}
+		public List<Administrator> GetDeletedAdministrators() {
+			using (var db = connect()) {
+				return db.Query<Administrator, User, Administrator>(ScriptService.Scripts["administrator_getdeleted"],
 					(a, u) => {
 						a.mapUser(u);
 						return a;
@@ -186,9 +293,43 @@ namespace BibleTree.Services {
 				).FirstOrDefault();
 			}
 		}
+		public Faculty GetActiveFacultyById(int user_id) {
+			using (var db = connect()) {
+				return db.Query<Faculty, User, Faculty>(ScriptService.Scripts["faculty_getactivebyid"],
+					(f, u) => {
+						f.mapUser(u);
+						return f;
+					},
+					new { User_id = user_id },
+					splitOn: "user_id"
+				).FirstOrDefault();
+			}
+		}
 		public List<Faculty> GetFaculty() {
 			using (var db = connect()) {
 				return db.Query<Faculty, User, Faculty>(ScriptService.Scripts["faculty_getall"],
+					(f, u) => {
+						f.mapUser(u);
+						return f;
+					},
+					splitOn: "user_id"
+				).AsList();
+			}
+		}
+		public List<Faculty> GetActiveFaculty() {
+			using (var db = connect()) {
+				return db.Query<Faculty, User, Faculty>(ScriptService.Scripts["faculty_getallactive"],
+					(f, u) => {
+						f.mapUser(u);
+						return f;
+					},
+					splitOn: "user_id"
+				).AsList();
+			}
+		}
+		public List<Faculty> GetDeletedFaculty() {
+			using (var db = connect()) {
+				return db.Query<Faculty, User, Faculty>(ScriptService.Scripts["faculty_getdeleted"],
 					(f, u) => {
 						f.mapUser(u);
 						return f;
@@ -268,6 +409,25 @@ namespace BibleTree.Services {
 					},
 					splitOn: "badge_id"
 				).AsList();
+			}
+		}
+		public void UpdateAward(BadgeInstance awardedbadge) {
+			using (var db = connect()) {
+				db.Execute(ScriptService.Scripts["awardedbadge_update"], awardedbadge);
+			}
+		}
+		public void UpdateAwardCoordinates(BadgeInstance awardedbadge) {
+			using (var db = connect()) {
+				db.Execute(ScriptService.Scripts["awardedbadge_updatecoordinates"], awardedbadge);
+			}
+		}
+		public void UpdateAwardCoordinates(int award_id, int xcoord, int ycoord) {
+			using (var db = connect()) {
+				BadgeInstance awardedbadge = new BadgeInstance();
+				awardedbadge.award_id = award_id;
+				awardedbadge.award_xcoord = xcoord;
+				awardedbadge.award_ycoord = ycoord;
+				db.Execute(ScriptService.Scripts["awardedbadge_updatecoordinates"], awardedbadge);
 			}
 		}
 		public void AssignAward(BadgeInstance awardedbadge) {
