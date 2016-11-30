@@ -18,18 +18,15 @@
 		buttID = clicked_id;
 		selectStudent();
 		}
-        function finishedBadgeSelection() {
+    function finishedBadgeSelection() {
             // Do something after badge is selected
 			$('#badge_button').val(badge_selection);
         }
+    var user_name;
 
     function finishedStudentSelection() {
-        // Do something after user is selected
-		if (buttID == "sender_button"){
-		$('#sender_button').val(student_selection);
-		}
-		else 
-			{$('#receipient_button').val(student_selection);}
+       
+       {$('#receipient_button').val(user_name + " " +student_selection);}
     }
 
 </script>
