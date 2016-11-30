@@ -1,5 +1,5 @@
 ﻿@model BibleTree.Models.BadgeInstance
-
+@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "SendBadge";
 }
@@ -20,15 +20,12 @@
 		}
         function finishedBadgeSelection() {
             // Do something after badge is selected
-            alert('You clicked on badge id: ' + badge_selection);
 			$('#badge_button').val(badge_selection);
         }
 
     function finishedStudentSelection() {
         // Do something after user is selected
-        alert('You clicked on user id: ' + student_selection);
 		if (buttID == "sender_button"){
-		alert("ante");
 		$('#sender_button').val(student_selection);
 		}
 		else 
@@ -49,13 +46,18 @@
 
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.sender_id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               	<input type="button" class="col-sm-3" id="sender_button" value="Select Student" onclick="saveButtonID(this.id)"/>
+               	 @Html.ActionLink(
+           (User.Identity.GetUserName().IndexOf("@") > 0 ? 
+                User.Identity.GetUserName().Substring(0, User.Identity.GetUserName().IndexOf("@")) : 
+                    User.Identity.GetUserName()),
+           "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             </div>
         </div>
 
@@ -73,11 +75,46 @@
             </div>
         </div>
 
+		<div class="form-group">
+            @Html.LabelFor(model => model.comment, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+				@Html.TextArea("Description", null,htmlAttributes: new { @class = "form-control col-md-2" })  
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Send" class="btn btn-default" />
+                <input type="button" value="Send" class="btn btn-default" onclick="awardBadge()"/>
             </div>
         </div>
     </div>
 }
 
+<script>
+            @functions{
+                public string TokenHeaderValue()
+                {
+                    string cookieToken, formToken;
+                    AntiForgery.GetTokens(null, out cookieToken, out formToken);
+                    return cookieToken + ":" + formToken;                
+                }
+            }
+    function awardBadge() {
+        form = "form";
+        action = $(form).attr("action");
+        var formData = {'__RequestVerificationToken': '@TokenHeaderValue()', badge_id: 1, sender_id: 2, recipient_id: 3};
+
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: action,
+            headers: {
+                '__RequestVerificationToken': '@TokenHeaderValue()'
+            },
+            data: formData,
+            success: function (data) {
+ 
+            }
+        });
+    }
+</script>
