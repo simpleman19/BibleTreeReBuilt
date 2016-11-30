@@ -44,7 +44,7 @@
 
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "sendform" }))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
@@ -53,11 +53,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.sender_id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               	 @Html.ActionLink(
-           (User.Identity.GetUserName().IndexOf("@") > 0 ? 
-                User.Identity.GetUserName().Substring(0, User.Identity.GetUserName().IndexOf("@")) : 
-                    User.Identity.GetUserName()),
-           "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+               	 @(User.Identity.GetUserName().IndexOf("@") > 0 ? User.Identity.GetUserName().Substring(0, User.Identity.GetUserName().IndexOf("@")) : User.Identity.GetUserName())
             </div>
         </div>
 
@@ -100,17 +96,15 @@
                 }
             }
     function awardBadge() {
-        form = "form";
+        form = "#sendform";
         action = $(form).attr("action");
-        var formData = {'__RequestVerificationToken': '@TokenHeaderValue()', badge_id: 1, sender_id: 2, recipient_id: 3};
+        token = $('input[name="__RequestVerificationToken"]').val();
+        var formData = {'__RequestVerificationToken': token, badge_id: 1, sender_id: 2, recipient_id: 3, comment: "Testing"};
 
         $.ajax({
             type: "POST",
             dataType: "html",
             url: action,
-            headers: {
-                '__RequestVerificationToken': '@TokenHeaderValue()'
-            },
             data: formData,
             success: function (data) {
  
