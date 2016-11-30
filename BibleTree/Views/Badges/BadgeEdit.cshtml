@@ -6,7 +6,7 @@
 
 <h2>Edit a Badge</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "sendform" }))
 {
     @Html.AntiForgeryToken()
     
@@ -95,8 +95,9 @@
                 }
             }
     function saveBadge() {
-        form = "form";
+        form = "#editform";
         action = $(form).attr("action");
+
         dataToSend = $(form).serialize();
         $.ajax({
             type: "POST",
@@ -110,5 +111,17 @@
                 listBadges();
             }
         });
+
+        function awardBadge() {
+
+            $.ajax({
+                type: "POST",
+                dataType: "html",
+                url: action,
+                data: formData,
+                success: function (data) {
+ 
+                }
+            });
     }
 </script>
