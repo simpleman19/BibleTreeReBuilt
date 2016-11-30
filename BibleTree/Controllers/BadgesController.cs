@@ -193,7 +193,6 @@ namespace BibleTree.Controllers
             badge.award_timestamp = DateTime.Now;
             SQLService database = new SQLService();
             database.AssignAward(badge);
-            Console.WriteLine(badge.award_sentid);
         }
 
         public ActionResult BadgeList()
