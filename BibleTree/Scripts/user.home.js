@@ -19,7 +19,7 @@ function editBadge(id) {
             $('#partial_view').html(data);
         }
     });
-    $(id_to_change).css({ "background-color": "grey" });
+    $(id_to_change).css({ "background-color": "lightgrey" });
 }
 
 function badgeDetail(id) {
@@ -39,7 +39,7 @@ function badgeDetail(id) {
             $('#partial_view').html(data);
         }
     });
-    $(id_to_change).css({ "background-color": "grey" });
+    $(id_to_change).css({ "background-color": "lightgrey" });
     last_selection = -1;
 }
 
@@ -59,7 +59,7 @@ function changeView(url, button) {
             $('#partial_view').html(data);
         }
     });
-    $(id_to_change).css({ "background-color": "grey" });
+    $(id_to_change).css({ "background-color": "lightgrey" });
 }
 
 function createBadge() {
