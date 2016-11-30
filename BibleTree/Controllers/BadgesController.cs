@@ -107,8 +107,10 @@ namespace BibleTree.Controllers
         [HttpPost]
         public void SendBadge(BadgeInstance badge)
         {
+            badge.time_stamp = DateTime.Now;
             SQLService database = new SQLService();
             database.AssignAward(badge);
+            Console.WriteLine(badge.sender_id);
         }
 
         public ActionResult BadgeList()
