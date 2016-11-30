@@ -50,7 +50,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.award_sentid, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               	 @(User.Identity.GetUserName().IndexOf("@") > 0 ? User.Identity.GetUserName().Substring(0, User.Identity.GetUserName().IndexOf("@")) : User.Identity.GetUserName())
+               	 @(User.Identity.GetUserName().IndexOf("@") > 0 ? User.Identity.GetUserId().Substring(0, User.Identity.GetUserName().IndexOf("@")) : User.Identity.GetUserId())
             </div>
         </div>
 
