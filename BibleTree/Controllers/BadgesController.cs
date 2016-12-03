@@ -48,7 +48,7 @@ namespace BibleTree.Controllers
                 spaces.Remove(i);
             }
             SQLService db = new SQLService();
-            List<BadgeInstance> badges = db.GetUserAwards(1010);
+            List<BadgeInstance> badges = db.GetUserAwards(1000);
             Random rnd = new Random();
             foreach(BadgeInstance inst in badges)
             {
