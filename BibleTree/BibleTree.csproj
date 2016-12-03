@@ -291,6 +291,7 @@
     <Content Include="browser_components\datatables\js\jquery.dataTables.js" />
     <Content Include="browser_components\datatables\js\jquery.dataTables.min.js" />
     <Content Include="browser_components\datatables\js\jquery.js" />
+    <Content Include="browser_components\tree.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
