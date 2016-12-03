@@ -1,7 +1,29 @@
-﻿
+﻿@model IEnumerable<BibleTree.Models.BadgeInstance>
+
 @{
     ViewBag.Title = "BadgeTree";
 }
+<style>
+
+</style>
 
 <h1>BadgeTree will be here</h1>
+
+<div class="container">
+    <div class="row tree">
+        <div class="col-xs-12 myimage tree">
+            @for(int y=100; y < 1201; y+=100)
+            {
+                <div class="row">
+                    @for(int x = 1; x < 13; x++)
+                    {
+                        <div class="col-xs-1" id="@(x+y)">
+                            <img src="http://www.oc.edu/academics/graduate/theology/images/digital-badge-images/student-peer-badges/animated-gifs/101%20Thumbs%20Up.gif" class="image" />
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
 

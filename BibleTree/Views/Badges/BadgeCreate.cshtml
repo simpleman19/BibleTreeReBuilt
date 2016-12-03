@@ -6,7 +6,7 @@
 
 <h2>Create a new Badge</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "CreateForm" })) 
 {
     @Html.AntiForgeryToken()
     
@@ -79,25 +79,15 @@
 }
 
 <script>
-        @functions{
-            public string TokenHeaderValue()
-            {
-                string cookieToken, formToken;
-                AntiForgery.GetTokens(null, out cookieToken, out formToken);
-                return cookieToken + ":" + formToken;                
-            }
-        }
+
     function createBadge() {
-        form = "form";
+        form = "#CreateForm";
         action = $(form).attr("action");
         dataToSend = $(form).serialize();
         $.ajax({
             type: "POST",
             dataType: "html",
             url: action,
-            headers: {
-                'RequestVerificationToken': '@TokenHeaderValue()'
-            },
             data: dataToSend,
             success: function (data) {
                 listBadges();
