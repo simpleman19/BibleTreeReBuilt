@@ -17,8 +17,8 @@
                 <div class="row">
                     @for(int x = 1; x < 13; x++)
                     {
-                        <div class="col-xs-1" id="@(x+y)">
-                            <img src="http://www.oc.edu/academics/graduate/theology/images/digital-badge-images/student-peer-badges/animated-gifs/101%20Thumbs%20Up.gif" class="image" />
+                        <div class="col-xs-1 col-md-1 col-lg-1" id="@(x+y)">
+                           
                         </div>
                     }
                 </div>
@@ -27,3 +27,15 @@
     </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        @foreach(var badge in Model)
+        {
+            var id = badge.award_xcoord + badge.award_ycoord;
+            <text>
+        $('#' + @id).css('background', 'url(@badge.badge_type.badge_gifURL) center');
+        $('#' + @id).css('background-size', '100% 100%');
+            </text>
+        }
+    });
+</script>

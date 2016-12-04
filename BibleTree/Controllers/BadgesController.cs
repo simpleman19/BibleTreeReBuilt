@@ -52,17 +52,46 @@ namespace BibleTree.Controllers
             Random rnd = new Random();
             foreach(BadgeInstance inst in badges)
             {
-                if (inst.badge_type.badge_level == BadgeType.Badge_Level.CORE)
+                var badge_type = db.GetBadgeById((int)inst.badge_id);
+                if (badge_type.badge_level == BadgeType.Badge_Level.CORE)
                 {
                     if (inst.award_xcoord == 0)
                     {
-                        int i = spaces.ToArray()[rnd.Next(0, spaces.Count)];
+                        int i = core[rnd.Next(0, core.Length)];
+                        spaces.Remove(i);
                         int x = i / 100;
                         x = x * 100;
                         int y = i - x;
                         inst.award_xcoord = x;
                         inst.award_ycoord = y;
                         db.UpdateAwardCoordinates(inst);
+                    }
+                }
+                else if (badge_type.badge_level == BadgeType.Badge_Level.COMPETENCY)
+                {
+                    if (inst.award_xcoord == 0)
+                    {
+                        int i = spaces.ToArray()[rnd.Next(0, spaces.Count)];
+                        spaces.Remove(i);
+                        int x = i / 100;
+                        x = x * 100;
+                        int y = i - x;
+                        inst.award_xcoord = x;
+                        inst.award_ycoord = y;
+                        db.UpdateAwardCoordinates(inst);
+                    }
+                }
+                else if (badge_type.badge_level == BadgeType.Badge_Level.COMMENDATION)
+                {
+                    if (inst.award_xcoord == 0)
+                    {
+                        int i = spaces.ToArray()[rnd.Next(0, spaces.Count)];
+                        spaces.Remove(i);
+                        int x = i / 100;
+                        x = x * 100;
+                        int y = i - x;
+                        inst.award_xcoord = x;
+                        inst.award_ycoord = y;
                     }
                 }
             }
