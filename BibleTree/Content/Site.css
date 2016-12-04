@@ -33,12 +33,10 @@ textarea {
     height: 600px;
 }
 
-.image {
-    max-width: 100%;
-    max-height: 100%;
-    height: auto;
-    background:transparent;
-}
 .tree .row {
     height: 37px;
+}
+.tree .row div{
+    height: 37px;
+    overflow: hidden;
 }
