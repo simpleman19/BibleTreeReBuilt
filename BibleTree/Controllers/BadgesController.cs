@@ -7,6 +7,7 @@ using BibleTree.Models;
 using BibleTree.Services;
 
 
+
 namespace BibleTree.Controllers
 {
     public class BadgesController : Controller
@@ -92,10 +93,17 @@ namespace BibleTree.Controllers
         public ActionResult SendBadge()
         {
             BadgeInstance badge = new BadgeInstance();
-    
+            
+            var user_name = User.Identity.Name;
+            SQLService database = new SQLService();
+            var user = database.GetActiveUserByEmail(user_name);
+
+            ViewBag.User = user;
+            ViewBag.Badge = badge;
+
             if (Request.IsAjaxRequest())
             {
-                return PartialView("SendBadge", badge);
+                return PartialView("SendBadge");
             }
             else
             {
