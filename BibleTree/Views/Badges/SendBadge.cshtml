@@ -22,11 +22,11 @@
 		}
     function finishedBadgeSelection() {
             // Do something after badge is selected
-			$('#badge_button').val(badge_selection);
+			$('#badge_button').val(badge_name);
         }
 
     function finishedStudentSelection() {
-        $('#receipient_button').val(student_selection);
+        $('#receipient_button').val(student_name);
     }
 
 </script>
@@ -50,19 +50,19 @@
         <div class="form-group">
             @Html.LabelFor(model => model.award_sentid, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               	 @ViewBag.User.user_id;
+               	 @ViewBag.User.user_name
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.recipient_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="recipient_id">Recipient Name</label>
             <div class="col-md-10">
 			   <input type="button" class="col-sm-3" id="receipient_button" value="Select Student" onclick="saveButtonID(this.id)"/>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.badge_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="badge_id">Badge Name</label>
             <div class="col-md-10">
                <input type="button" class="col-sm-3" id="badge_button" value="Select Badge" onclick="selectBadge()"/>
             </div>
