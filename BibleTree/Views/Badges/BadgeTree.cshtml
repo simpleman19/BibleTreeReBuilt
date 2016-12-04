@@ -1,7 +1,41 @@
-﻿
+﻿@model IEnumerable<BibleTree.Models.BadgeInstance>
+
 @{
     ViewBag.Title = "BadgeTree";
 }
+<style>
+
+</style>
 
 <h1>BadgeTree will be here</h1>
 
+<div class="container">
+    <div class="row tree">
+        <div class="col-xs-12 myimage tree">
+            @for(int y=100; y < 1201; y+=100)
+            {
+                <div class="row">
+                    @for(int x = 1; x < 13; x++)
+                    {
+                        <div class="col-xs-1 col-md-1 col-lg-1" id="@(x+y)">
+                           
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        @foreach(var badge in Model)
+        {
+            var id = badge.award_xcoord + badge.award_ycoord;
+            <text>
+        $('#' + @id).css('background', 'url(@badge.badge_type.badge_gifURL) center');
+        $('#' + @id).css('background-size', '100% 100%');
+            </text>
+        }
+    });
+</script>

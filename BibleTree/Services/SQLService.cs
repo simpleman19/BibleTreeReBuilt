@@ -395,7 +395,7 @@ namespace BibleTree.Services {
 					(a, b) => {
 						a.badge_type = b;
 						return a;
-					}, user_id,
+					}, new { user_id = user_id },
 					splitOn: "badge_id"
 				).AsList();
 			}
