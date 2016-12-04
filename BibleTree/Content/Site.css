@@ -22,3 +22,21 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.myimage {
+    background-image: url('../browser_components/tree.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.tree {
+    height: 600px;
+}
+
+.tree .row {
+    height: 37px;
+}
+.tree .row div{
+    height: 37px;
+    overflow: hidden;
+}
