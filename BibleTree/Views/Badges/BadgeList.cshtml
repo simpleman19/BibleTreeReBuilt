@@ -5,7 +5,7 @@
 
 }
 
-<h2>List of Badges</h2>
+<h2>Badge Bank</h2>
 
 <p>
     <a onclick="createBadge()">Create a new Badge</a>
@@ -20,10 +20,7 @@
                 @Html.DisplayNameFor(model => model.badge_name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.badge_pngURL)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.badge_gifURL)
+                @Html.DisplayNameFor(model => model.badge_level)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.badge_description)
@@ -42,10 +39,7 @@
                     @Html.DisplayFor(modelItem => item.badge_name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.badge_pngURL)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.badge_gifURL)
+                    @Html.DisplayFor(modelItem => item.badge_level)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.badge_description)
@@ -73,9 +67,12 @@
                     "searchable": false
                 }
             ],
-            language: {
+            "language": {
                 searchPlaceholder: "Search Students"
-            }
+            },
+            "buttons": [
+                'csv', 'copy'
+            ]
         });
     }());
 
