@@ -7,6 +7,7 @@ using BibleTree.Models;
 using BibleTree.Services;
 
 
+
 namespace BibleTree.Controllers
 {
     public class BadgesController : Controller
@@ -174,14 +175,32 @@ namespace BibleTree.Controllers
 
         public ActionResult SendBadge()
         {
+            BadgeInstance badge = new BadgeInstance();
+            
+            var user_name = User.Identity.Name;
+            SQLService database = new SQLService();
+            var user = database.GetActiveUserByEmail(user_name);
+
+            ViewBag.User = user;
+            ViewBag.Badge = badge;
+
             if (Request.IsAjaxRequest())
             {
                 return PartialView("SendBadge");
             }
             else
             {
-                return View();
+                return View(badge);
             }
+        }
+
+        // POST: Badges
+        [HttpPost]
+        public void SendBadge(BadgeInstance badge)
+        {
+            badge.award_timestamp = DateTime.Now;
+            SQLService database = new SQLService();
+            database.AssignAward(badge);
         }
 
         public ActionResult BadgeList()
@@ -200,7 +219,26 @@ namespace BibleTree.Controllers
         }
         public ActionResult StudentBadges(int id)
         {
-            return View();
+            SQLService db = new SQLService();
+            Student student = new Student();
+
+            if (id != 0)
+            {
+                student = db.GetStudentById(id);
+            }
+            else
+            {
+                student = db.GetStudentById(1);
+            }
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("StudentBadges", student);
+            }
+            else
+            {
+                return View(student);
+            }
         }
     }
 }

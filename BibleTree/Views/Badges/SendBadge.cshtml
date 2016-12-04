@@ -1,4 +1,6 @@
-﻿@model BibleTree.Models.BadgeInstance
+﻿@using BibleTree.Models
+@using Microsoft.AspNet.Identity
+@model BibleTree.Models.BadgeInstance
 
 @{
     ViewBag.Title = "SendBadge";
@@ -18,21 +20,13 @@
 		buttID = clicked_id;
 		selectStudent();
 		}
-        function finishedBadgeSelection() {
+    function finishedBadgeSelection() {
             // Do something after badge is selected
-            alert('You clicked on badge id: ' + badge_selection);
-			$('#badge_button').val(badge_selection);
+			$('#badge_button').val(badge_name);
         }
 
     function finishedStudentSelection() {
-        // Do something after user is selected
-        alert('You clicked on user id: ' + student_selection);
-		if (buttID == "sender_button"){
-		alert("ante");
-		$('#sender_button').val(student_selection);
-		}
-		else 
-			{$('#receipient_button').val(student_selection);}
+        $('#receipient_button').val(student_name);
     }
 
 </script>
@@ -47,37 +41,75 @@
 
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "sendform" }))
 {
+    @Html.AntiForgeryToken()
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.sender_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.award_sentid, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               	<input type="button" class="col-sm-3" id="sender_button" value="Select Student" onclick="saveButtonID(this.id)"/>
+               	 @ViewBag.User.user_name
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.recipient_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="recipient_id">Recipient Name</label>
             <div class="col-md-10">
 			   <input type="button" class="col-sm-3" id="receipient_button" value="Select Student" onclick="saveButtonID(this.id)"/>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.badge_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="badge_id">Badge Name</label>
             <div class="col-md-10">
                <input type="button" class="col-sm-3" id="badge_button" value="Select Badge" onclick="selectBadge()"/>
             </div>
         </div>
 
+		<div class="form-group">
+            @Html.LabelFor(model => model.award_comment, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+				@Html.TextArea("Description", null,htmlAttributes: new { @class = "form-control col-md-2", @id="comment"})  
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Send" class="btn btn-default" />
+                <input type="button" value="Send" class="btn btn-default" onclick="awardBadge()"/>
             </div>
         </div>
     </div>
 }
 
+<script>
+            @functions{
+                public string TokenHeaderValue()
+                {
+                    string cookieToken, formToken;
+                    AntiForgery.GetTokens(null, out cookieToken, out formToken);
+                    return cookieToken + ":" + formToken;                
+                }
+            }
+    function awardBadge() {
+        form = "#sendform";
+        action = $(form).attr("action");
+        token = $('input[name="__RequestVerificationToken"]').val();
+        var formData = {'__RequestVerificationToken': token, badge_id: badge_selection, award_sentid:1 , user_id: student_selection, award_comment: $("#comment").val()};
+
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: action,
+            data: formData,
+            success: function (data) {
+                alert("Badge sent successfully");
+                sendBadge();
+            },
+            error: function (data) {
+                alert("This badge did not send successfully");
+            }
+        });
+    }
+</script>
