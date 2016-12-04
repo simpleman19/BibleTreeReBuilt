@@ -1,4 +1,5 @@
 ﻿student_selection = 0;
+student_name = "";
 var student_table;
 
 
@@ -20,6 +21,7 @@ function initTable() {
     $('#student_table tbody').on('click', 'tr', function () {
         var data = student_table.row(this).data();
         student_selection = data[0];
+        student_name = data[1];
         $('#student_modal').modal('hide');
         finishedStudentSelection();
     });

@@ -87,8 +87,8 @@ function listStudentBadges() {
 }
 
 function sendBadge() {
-    var button = "#buttonSendBadge";
-    var url = '/badges/sendbadge';
+    var button = "#buttonListBadges";
+    var url = '/Badges/SendBadge';
     changeView(url, button);
 }
 
