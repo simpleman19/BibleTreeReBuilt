@@ -9,12 +9,20 @@
 <link href="~/Content/tabs.css" rel="stylesheet" type="text/css" />
 <script src="~/Scripts/badge.selection.js"></script>
 <script src="~/browser_components/datatables/js/jquery.dataTables.js"></script>
+<script src="~/browser_components/datatables/js/dataTables.buttons.min.js"></script>
+<script src="~/browser_components/datatables/js/buttons.html5.min.js"></script>
+<script src="~/browser_components/datatables/js/jszip.min.js"></script>
 <link rel="stylesheet" href="~/browser_components/datatables/css/dataTables.bootstrap.css">
+<link rel="stylesheet" href="~/browser_components/datatables/css/buttons.dataTables.min.css">
 
 <script>
     function finishedBadgeSelection() {
          editBadge(badge_selection);
     }
+
+    $(document).ready(function () {
+        listBadges();
+    });
 
 </script>
 
@@ -40,16 +48,20 @@
     }
     .tabbing {
         padding: 0px;
-        border: none;
-        background: none;
+        height: 40px;
+        background:#aaa;
+        border:1px solid #777;
+        border-bottom:none;
+        border-radius:4px 4px 0 0;
+        margin-right:1px;
+        color:black;
+        text-decoration:none
     }
 </style>
 
 <div class="container bumpDown">
     <div class="row">
         <div class="col-sm-10">
-            <button class="tabbing col-sm-2" id="buttonCreateBadge" onclick="createBadge()">Create a Badge</button>
-            <button class="tabbing col-sm-2" id="buttonEditBadge" onclick="editBadgeGetId()">Edit a Badge</button>
             <button class="tabbing col-sm-2" id="buttonListBadges" onclick="listBadges()">List of Badges</button>
             <button class="tabbing col-sm-2" id="buttonSendBadge" onclick="sendBadge()">Send a Badge</button>
             <button class="tabbing col-sm-2" id="buttonListStudents" onclick="studentList()">List of Students</button>
@@ -61,7 +73,7 @@
     </div>
 
     <div class="row">
-        <div id="partial_view" class="col-sm-10 center-block" style="background-color: lightgray;">
+        <div id="partial_view" class="col-sm-10 center-block" style="background-color: lightgray; border-radius:8px 8px 0 0;">
         </div>
     </div>
 </div>
