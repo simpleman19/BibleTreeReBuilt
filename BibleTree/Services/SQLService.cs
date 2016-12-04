@@ -5,7 +5,6 @@ using Dapper;
 using Dapper.Contrib.Extensions;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text.RegularExpressions;
 using BibleTree.Models;
 
 namespace BibleTree.Services {
@@ -433,6 +432,8 @@ namespace BibleTree.Services {
 		public void AssignAward(BadgeInstance awardedbadge) {
 			using (var db = connect()) {
 				db.Execute(ScriptService.Scripts["awardedbadge_insert"], awardedbadge);
+				EmailService em = new EmailService();
+				em.Contact(awardedbadge);
 			}
 		}
 		public void RevokeAward(BadgeInstance awardedbadge) {

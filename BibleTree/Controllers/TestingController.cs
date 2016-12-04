@@ -38,6 +38,21 @@ namespace BibleTree.Controllers
 			return debug;
 		}
 
+		public void sendemail () {
+			//SQLService sql = new SQLService();
+			//sql.AddUserWithId(new User() { user_id = 99, user_name = "Tyler Kerr", user_email = "tyler.kerr@eagles.oc.edu", user_token = "tylerkerrtoken" });
+			//sql.AddBadgeWithId(new BadgeType() { badge_id = 99, badge_name = "testing badge", badge_description = "Getting this email service working", badge_active = true, badge_activeDate = DateTime.Now, badge_expirationDate = DateTime.MaxValue, badge_gifURL = "http://www.oc.edu/academics/graduate/theology/images/digital-badge-images/student-peer-badges/animated-gifs/101%20Thumbs%20Up.gif" });
+
+			EmailService service = new EmailService();
+			service.Contact(new BadgeInstance() {
+				user_id = 99,
+				badge_id = 99,
+				award_sentid = 99,
+				award_timestamp = DateTime.Now,
+				award_comment = "Great job!"
+			});	
+		}
+
 	    public string SelfTest() {
 			string debug = "";
 		    SQLService sql = new SQLService();
