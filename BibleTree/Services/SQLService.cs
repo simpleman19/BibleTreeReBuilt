@@ -395,13 +395,35 @@ namespace BibleTree.Services {
 						a.badge_type = b;
 						return a;
 					}, new { user_id = user_id },
-					splitOn: "badge_id"
+					splitOn: "award_id"
 				).AsList();
 			}
 		}
 		public List<BadgeInstance> GetAwards() {
 			using (var db = connect()) {
 				return db.Query<BadgeInstance, BadgeType, BadgeInstance>(ScriptService.Scripts["awardedbadge_getall"],
+					(a, b) => {
+						a.badge_type = b;
+						return a;
+					},
+					splitOn: "badge_id"
+				).AsList();
+			}
+		}
+		public List<BadgeInstance> GetActiveAwards() {
+			using (var db = connect()) {
+				return db.Query<BadgeInstance, BadgeType, BadgeInstance>(ScriptService.Scripts["awardedbadge_getallactive"],
+					(a, b) => {
+						a.badge_type = b;
+						return a;
+					},
+					splitOn: "badge_id"
+				).AsList();
+			}
+		}
+		public List<BadgeInstance> GetDeactivatedAwards() {
+			using (var db = connect()) {
+				return db.Query<BadgeInstance, BadgeType, BadgeInstance>(ScriptService.Scripts["awardedbadge_getdeactivated"],
 					(a, b) => {
 						a.badge_type = b;
 						return a;
@@ -432,8 +454,6 @@ namespace BibleTree.Services {
 		public void AssignAward(BadgeInstance awardedbadge) {
 			using (var db = connect()) {
 				db.Execute(ScriptService.Scripts["awardedbadge_insert"], awardedbadge);
-				EmailService em = new EmailService();
-				em.Contact(awardedbadge);
 			}
 		}
 		public void RevokeAward(BadgeInstance awardedbadge) {
@@ -442,6 +462,5 @@ namespace BibleTree.Services {
 			}
 		}
 		#endregion
-
 	}
 }

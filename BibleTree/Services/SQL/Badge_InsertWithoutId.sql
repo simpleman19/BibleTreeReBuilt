@@ -6,7 +6,8 @@
 	[badge_activeDate], 
 	[badge_expirationDate], 
 	[badge_gifURL], 
-	[badge_pngURL] 
+	[badge_pngURL],
+	[badge_active] 
 )
 VALUES 
 ( 
@@ -16,5 +17,6 @@ VALUES
 	@badge_activeDate, 
 	@badge_expirationDate, 
 	@badge_gifURL, 
-	@badge_pngURL 
+	@badge_pngURL,
+	1
 )

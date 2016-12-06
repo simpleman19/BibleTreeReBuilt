@@ -8,7 +8,7 @@ CREATE TABLE [BibleTree].[dbo].[user]
 	[user_name] varchar(64) NOT NULL, 
 	[user_token] varchar(255), 
 	[user_type] char,
-	[user_active] bit
+	[user_active] bit NOT NULL
 )
 GO
 
@@ -46,7 +46,7 @@ CREATE TABLE [BibleTree].[dbo].[badge]
 	[badge_expirationDate] datetime NOT NULL,
 	[badge_gifURL] varchar(255), 
 	[badge_pngURL] varchar(255),
-	[badge_active] bit
+	[badge_active] bit NOT NULL
 )
 GO
 
@@ -59,6 +59,7 @@ CREATE TABLE [BibleTree].[dbo].[awardedbadge]
 	[award_timestamp] datetime NOT NULL, 
 	[award_comment] varchar(255),
 	[award_xcoord] int,
-	[award_ycoord] int
+	[award_ycoord] int,
+	[award_active] bit NOT NULL
 )
 GO

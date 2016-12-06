@@ -13,7 +13,7 @@ namespace BibleTree.Models
 		[DisplayName("Sender ID")] public long award_sentid { get; set; }
 		[DisplayName("Badge ID")] public long badge_id { get; set; }
 		public long user_id { get; set; }
-		[Key]public long award_id { get; set; } //dont set this, its only for mapping identity keys
+		[Key] public long award_id { get; set; } //dont set this, its only for mapping identity keys
 
 		public int award_xcoord { get; set; }
 		public int award_ycoord { get; set; }
@@ -21,7 +21,7 @@ namespace BibleTree.Models
 		public BadgeType badge_type { get; set; }
 
 		public override string ToString() {
-			return "{ badge_id:'" + badge_id + "' user_id:'" + user_id + "' award_sentid:'" + award_sentid + "' award_timestamp:'" + award_timestamp + "' award_comment:'" + award_comment + "'}";
+			return "{ award_id:'" + award_id + "' badge_id:'" + badge_id + "' user_id:'" + user_id + "' award_sentid:'" + award_sentid + "' award_timestamp:'" + award_timestamp + "' award_comment:'" + award_comment + "'}";
 		}
 	}
 }

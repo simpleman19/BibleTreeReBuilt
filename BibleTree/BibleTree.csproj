@@ -360,6 +360,9 @@
     <Content Include="Services\SQL\Administrator_GetDeleted.sql" />
     <Content Include="Services\SQL\Administrator_GetAll.sql" />
     <Content Include="Services\SQL\AwardedBadge_Delete.sql" />
+    <Content Include="Services\SQL\AwardedBadge_GetActiveByUserId.sql" />
+    <Content Include="Services\SQL\AwardedBadge_GetDeactivated.sql" />
+    <Content Include="Services\SQL\AwardedBadge_GetAllActive.sql" />
     <Content Include="Services\SQL\AwardedBadge_GetAll.sql" />
     <Content Include="Services\SQL\AwardedBadge_UpdateCoordinates.sql" />
     <Content Include="Services\SQL\AwardedBadge_Update.sql" />
@@ -390,6 +393,7 @@
     <Content Include="Services\SQL\Database_Create.sql" />
     <Content Include="Services\SQL\Database_Drop.sql" />
     <Content Include="Services\SQL\AwardedBadge_GetByUserId.sql" />
+    <Content Include="Services\SQL\AwardedBadge_Deactivate.sql" />
     <Content Include="Services\SQL\User_GetActiveById.sql" />
     <Content Include="Services\SQL\User_GetAllActive.sql" />
     <Content Include="Services\SQL\User_GetActiveByEmail.sql" />
