@@ -1,11 +1,12 @@
 ﻿using System.Net;
 using System.Net.Mail;
 using BibleTree.Models;
+using System;
 
 namespace BibleTree.Services {
 	public class EmailService {
 
-		public void Contact(BadgeInstance awardedBadge) {
+		public string Contact(BadgeInstance awardedBadge) {
 			SQLService db = new SQLService();
 
 			User senduser = db.GetActiveUserById((int)awardedBadge.award_sentid);
@@ -24,18 +25,23 @@ namespace BibleTree.Services {
 			message.Body = string.Format(body, senduser.user_name, senduser.user_email, badge.badge_name, badge.badge_description, badge.badge_gifURL, awardedBadge.award_comment);
 			message.IsBodyHtml = true;
 
-			using (var smtp = new SmtpClient()) {
-				var credential = new NetworkCredential {
-					UserName = "bibletreeproject@gmail.com",	//TESTING ACCOUNT
-					Password = "kMbCiz2GsNsU"
-				};
-				smtp.Credentials = credential;
-				smtp.Host = "smtp.gmail.com";
-				smtp.Port = 587;
-				smtp.EnableSsl = true;
-				
-				smtp.Send(message);
+			try {
+				using (var smtp = new SmtpClient()) {
+					var credential = new NetworkCredential {
+						UserName = "bibletreeproject@gmail.com",    //TESTING ACCOUNT
+						Password = "kMbCiz2GsNsU"
+					};
+					smtp.Credentials = credential;
+					smtp.Host = "smtp.gmail.com";
+					smtp.Port = 587;
+					smtp.EnableSsl = true;
+
+					smtp.Send(message);
+				}
+			} catch (Exception e) {
+				return "<span style='color:red'>fail</span> <br/>[reason:] " + e.Message;
 			}
+			return "<span style='color:green'>success</span>";
 		}
 	}
 }

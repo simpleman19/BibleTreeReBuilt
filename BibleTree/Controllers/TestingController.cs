@@ -111,12 +111,12 @@ namespace BibleTree.Controllers
 		public string AwardedBadges() {
 			SQLService sql = new SQLService();
 			string debug = "<h3>Award report</h3><br/>active:<br/>";
-			foreach (var badge in sql.GetActiveAwards()) {
-				debug += badge.badge_id + ": " + badge + "<br/>";
+			foreach (var award in sql.GetActiveAwards()) {
+				debug += award.award_id + ": " + award + "<br/>";
 			}
 			debug += "<br/><br/>deactivated:<br/>";
-			foreach (var badge in sql.GetDeactivatedAwards()) {
-				debug += badge.badge_id + ": " + badge + "<br/>";
+			foreach (var award in sql.GetDeactivatedAwards()) {
+				debug += award.award_id + ": " + award + "<br/>";
 			}
 			debug += "<br/><br/>all:<br/>";
 			foreach (var award in sql.GetAwards()) {
@@ -126,14 +126,27 @@ namespace BibleTree.Controllers
 		}
 
 		public void sendemail () {
+			SQLService sql = new SQLService();
+			if (sql.GetBadgeById(99) == null || !(sql.GetBadgeById(99).badge_id == 99)) {
+				BadgeType bt = new BadgeType() { badge_id = 99, badge_activeDate = DateTime.Now, badge_expirationDate = DateTime.MaxValue, badge_name = "email badge", badge_description = "testing email", badge_gifURL = "http://www.oc.edu/academics/graduate/theology/images/digital-badge-images/student-peer-badges/animated-gifs/104%20Super%20Proofer.gif", badge_active = true, badge_level = BadgeType.Badge_Level.CORE };
+				sql.AddBadgeWithId(bt);
+			}
+			User u = new User() { user_active = true, user_email = "bibletreeproject@gmail.com", user_id = 99, user_name = "email user" };
+			if (sql.GetUserById(99) == null || !(sql.GetUserById(99).user_id == 99)) {
+				
+				sql.AddUserWithId(u);
+			}
+			if (sql.GetStudentById(99) == null || !(sql.GetStudentById(99).user_id == 99)) {
+				Student s = new Student() { student_id = "1234567", student_dateEnrolled = DateTime.Now, student_dateGraduated = DateTime.MaxValue };
+				s.mapUser(u);
+				sql.AddStudent(s);
+			}
+
+			BadgeInstance bi = new BadgeInstance() {award_comment="this is testing email", award_sentid=99, user_id=99, badge_id=99, award_timestamp=DateTime.Now };
+			sql.AssignAward(bi);
+
 			EmailService service = new EmailService();
-			service.Contact(new BadgeInstance() {
-				user_id = 1,
-				badge_id = 1,
-				award_sentid = 2,
-				award_timestamp = DateTime.Now,
-				award_comment = "This is a test award"
-			});	
+			service.Contact(bi);
 		}
 
 	    public string SelfTest() {
@@ -166,7 +179,7 @@ namespace BibleTree.Controllers
 				sql.AddUserWithoutId(new User() {user_name = "test user5", user_email = "testuser5@gmail.com", user_token = "user5token" });
 				debug += "<br/>result 2:" + sql.GetUserById(5);
 
-				debug += "<br/><br/>Renaming user 1 to \"Test Student\"<br/>result: ";
+				debug += "<br/><br/>Updating user who has user_id = 1 to \"Test Student\"<br/>result: ";
 				User u = sql.GetUserById(1);
 				u.user_name = "Test Student";
 				u.user_email = "bibletreeproject@gmail.com";
@@ -185,9 +198,28 @@ namespace BibleTree.Controllers
 				debug += "<br/><br/>Awarding badge_id = 1 to user_id = 1<br/>result: ";
 				BadgeInstance awardedBadge = new BadgeInstance() { badge_id = 1, award_sentid = 2, award_comment = "this is a test award", award_timestamp = DateTime.Now, user_id = 1 };
 				sql.AssignAward(awardedBadge);
+				debug += sql.GetUserAwards(1)[0];
 
-				debug += "<br/><br/>Sending user_id = 1 an award email<br/>";
-				em.Contact(awardedBadge);
+				debug += "<br/><br/>Sending user_id = 1 an award email<br/>result: ";
+				debug += em.Contact(awardedBadge);
+
+				debug += "<br/><br/>Revoking award_id = 1 from user_id = 1<br/>result: ";
+				BadgeInstance bi = sql.GetUserAwards(1)[0];
+				sql.RevokeAward(bi);
+				if (sql.GetUserAwards(1).Count == 0) {
+					debug += "<span style='color:green'>success</span>";
+				} else {
+					debug += "<span style='color:red'>fail</span>";
+					debug += ": [" + sql.GetUserAwards(1).Count + "] = {";
+					foreach (var inst in sql.GetUserAwards(1)) {
+						debug +=  + inst.award_id + " ";
+					}
+					debug += "}";
+				}
+
+				debug += "<br/><br/>Awarding badge_id = 1 to user_id = 1 again<br/>result: ";
+				sql.AssignAward(new BadgeInstance() { badge_id = 1, award_sentid = 2, award_comment = "this is a test award", award_timestamp = DateTime.Now, user_id = 1 });
+				debug += sql.GetUserAwards(1)[0];
 
 				debug += "<br/><br/>List of all users:";
 			    foreach (var user in sql.GetUsers()) {
