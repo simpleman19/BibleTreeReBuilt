@@ -40,7 +40,7 @@ namespace BibleTree.Services {
 			//Resets entire database with fresh empty model
 			Drop();
 			Create();
-			return "success";
+			return "<span style='color:green'>success</span>";
 		}
 		public void Drop() {
 			using (var db = noDatabaseConnect()) {
@@ -395,7 +395,18 @@ namespace BibleTree.Services {
 						a.badge_type = b;
 						return a;
 					}, new { user_id = user_id },
-					splitOn: "award_id"
+					splitOn: "badge_id"
+				).AsList();
+			}
+		}
+		public List<BadgeInstance> GetActiveUserAwards(int user_id) {
+			using (var db = connect()) {
+				return db.Query<BadgeInstance, BadgeType, BadgeInstance>(ScriptService.Scripts["awardedbadge_getactivebyuserid"],
+					(a, b) => {
+						a.badge_type = b;
+						return a;
+					}, new { user_id = user_id },
+					splitOn: "badge_id"
 				).AsList();
 			}
 		}
