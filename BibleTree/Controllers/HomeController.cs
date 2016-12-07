@@ -27,11 +27,10 @@ namespace BibleTree.Controllers
                                 return RedirectToAction("studenthome", "User");
 
                             case 'f':
-                            //return RedirectToAction("UserHome", "User");
+                                return RedirectToAction("UserHome", "User");
 
                             case 'a':
-                                //return RedirectToAction("UserHome", "User");
-                                break;
+                                return RedirectToAction("UserHome", "User");
                         }
 
                         break;
