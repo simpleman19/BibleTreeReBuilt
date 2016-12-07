@@ -12,11 +12,21 @@ namespace BibleTree.Controllers
     {
         public ActionResult UserHome()
         {
+            if (User.Identity.IsAuthenticated == false)
+            {
+                return RedirectToAction("Index", "home");
+            }
+
             return View();
         }
 
         public ActionResult StudentHome()
         {
+            if (User.Identity.IsAuthenticated == false)
+            {
+                return RedirectToAction("Index", "home");
+            }
+
 
             return View();
         }
