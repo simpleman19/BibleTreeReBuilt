@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Index";
 
-    ViewBag.ReturnUrl = "/user/userhome";
+    ViewBag.ReturnUrl = ViewBag.ReturnUrl == null ? "/home/index" : ViewBag.ReturnUrl;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 

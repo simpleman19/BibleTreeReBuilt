@@ -9,10 +9,16 @@ using BibleTree.Services;
 
 namespace BibleTree.Controllers
 {
+    [RequireHttps]
     public class BadgesController : Controller
     {
         public ActionResult BadgeTree()
         {
+            //if (User.Identity.IsAuthenticated == false)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+
             if (Request.IsAjaxRequest())
             {
                 return PartialView("BadgeTree");
@@ -25,6 +31,11 @@ namespace BibleTree.Controllers
         // GET: Badges
         public ActionResult BadgeCreate()
         {
+            //if (User.Identity.IsAuthenticated == false)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+
             BadgeType badge = new BadgeType(); 
 
             if (Request.IsAjaxRequest())
@@ -41,12 +52,22 @@ namespace BibleTree.Controllers
         [HttpPost]
         public void BadgeCreate(BadgeType badge)
         {
+            //if (User.Identity.IsAuthenticated == false)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+
             SQLService database = new SQLService();
             database.AddBadgeWithoutId(badge);
         }
 
         public ActionResult BadgeEdit(int Id)
         {
+            //if (User.Identity.IsAuthenticated == false)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+
             SQLService db = new SQLService();
             BadgeType badge = db.GetBadgeById(Id);
 
@@ -63,12 +84,22 @@ namespace BibleTree.Controllers
         [HttpPost]
         public void BadgeEdit(BadgeType badge)
         {
+            //if (User.Identity.IsAuthenticated == false)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+
             SQLService database = new SQLService();
             database.UpdateBadge(badge);
         }
 
         public ActionResult BadgeView(int id)
         {
+            //if (User.Identity.IsAuthenticated == false)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+
             BadgeType badge = new BadgeType();
             SQLService db = new SQLService();
             if (id != 0)
@@ -91,6 +122,11 @@ namespace BibleTree.Controllers
 
         public ActionResult SendBadge()
         {
+            //if (User.Identity.IsAuthenticated == false)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+
             if (Request.IsAjaxRequest())
             {
                 return PartialView("BadgeSend");
@@ -103,6 +139,11 @@ namespace BibleTree.Controllers
 
         public ActionResult BadgeList()
         {
+            //if (User.Identity.IsAuthenticated == false)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+
             SQLService database = new SQLService();
             var badgeList = database.GetBadges();
 

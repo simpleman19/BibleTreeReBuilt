@@ -8,10 +8,16 @@ using BibleTree.Services;
 
 namespace BibleTree.Controllers
 {
+    [RequireHttps]
     public class UserController : Controller
     {
         public ActionResult UserHome()
         {
+            //if (User.Identity.IsAuthenticated == false)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+
             BadgeType badge = new BadgeType();
             badge.badge_description = "Testing Description";
             badge.badge_name = "Badge Name";
@@ -22,6 +28,11 @@ namespace BibleTree.Controllers
 
         public ActionResult StudentList()
         {
+            //if (User.Identity.IsAuthenticated == false)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+
             SQLService database = new SQLService();
             var userList = database.GetStudents();
 
@@ -29,6 +40,11 @@ namespace BibleTree.Controllers
         }
         public ActionResult UserSearch()
         {
+            //if (User.Identity.IsAuthenticated == false)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+
             //SQLService db = new SQLService();
             //var students = db.GetStudents();
 

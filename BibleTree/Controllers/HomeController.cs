@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using BibleTree.Services;
 
 namespace BibleTree.Controllers
 {
@@ -11,7 +12,32 @@ namespace BibleTree.Controllers
     {
         public ActionResult Index()
         {
-            
+            if (User.Identity.IsAuthenticated)
+            {
+                SQLService database = new SQLService();
+                var users = database.GetUsers();
+
+                foreach (var user in users)
+                {
+                    if (user.user_email == User.Identity.Name)
+                    {
+                        switch (user.user_type)
+                        {
+                            case 's':
+                                return RedirectToAction("studenthome", "User");
+
+                            case 'f':
+                                //return RedirectToAction("UserHome", "User");
+
+                            case 'a':
+                                //return RedirectToAction("UserHome", "User");
+                                break;
+                        }
+
+                        break;
+                    }
+                }
+            }
 
             return View();
         }
