@@ -21,6 +21,13 @@
 
 </script>
 
+<script>
+    $(document).ready(function () {
+        badgeTree();
+    });
+
+</script>
+
 
 <script src="~/Scripts/student.selection.js"></script>
 
@@ -43,8 +50,14 @@
     }
     .tabbing {
         padding: 0px;
-        border: none;
-        background: none;
+        height: 40px;
+        background:#aaa;
+        border:1px solid #777;
+        border-bottom:none;
+        border-radius:4px 4px 0 0;
+        margin-right:1px;
+        color:black;
+        text-decoration:none
     }
 </style>
 
@@ -61,7 +74,7 @@
     </div>
 
     <div class="row">
-        <div id="partial_view" class="col-sm-10 center-block">
+        <div id="partial_view" class="col-sm-10 center-block" style="background-color: lightgray; border-radius:8px 8px 0 0;">
         </div>
     </div>
 </div>
