@@ -1,9 +1,14 @@
 ﻿@model BibleTree.Models.User
 @{
-    ViewBag.Title = "StudentBadges";
+    ViewBag.Title = "StudentDetails";
 }
 
-<h2>Recieved Badges</h2>
+<h2>Recieved Badges for @Model.user_name</h2>
+<hr />
+<a onclick="studentList()">Back To Student List</a>
+<br/><br />
+
+<a onclick="badgeTree(@Model.user_id)">Badge Tree For @Model.user_name</a>
 
 <table class="table">
     <tr>

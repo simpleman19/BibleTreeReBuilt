@@ -74,6 +74,12 @@ function badgeTree() {
     changeView(url, button);
 }
 
+function badgeTree(id) {
+    var button = "#buttonBadgeTree";
+    var url = '/badges/badgetree/'+id;
+    changeView(url, button);
+}
+
 function listBadges() {
     var button = "#buttonListBadges";
     var url = '/badges/badgelist';
@@ -101,5 +107,11 @@ function studentList() {
 function facultyList() {
     var button = "#buttonListFaculty";
     var url = '/user/facultylist';
+    changeView(url, button);
+}
+
+function studentDetail(id) {
+    var button = "#buttonListStudents";
+    var url = '/user/studentdetails/'+id;
     changeView(url, button);
 }

@@ -69,26 +69,7 @@ namespace BibleTree.Controllers
                 // TODO delete the student
             }
         }
-        public ActionResult StudentDetails(int id)
-        {
-            // TODO
-            // add view
-            // Will show all of students data and badges
-            // will also link to edit student's badges
 
-            Student student = new Student();
-            SQLService db = new SQLService();
-            if (id != 0)
-            {
-                student = db.GetStudentById(id);
-            }
-            else
-            {
-                student = db.GetStudentById(1);
-            }
-
-            return View(student);
-        }
         public ActionResult EditStudent(int id)
         {
             // TODO add this view !
@@ -112,9 +93,32 @@ namespace BibleTree.Controllers
 
             return View(student);
         }
-        
-		
-		
+
+        public ActionResult StudentDetails(int? id)
+        {
+            SQLService database = new SQLService();
+            User student = null;
+            if (id == null)
+            {
+                var user_name = User.Identity.Name;
+                student = database.GetActiveUserByEmail(user_name);
+            }
+            else
+            {
+                student = database.GetUserById((int)id);
+            }
+            ViewBag.badges = database.GetUserAwards((int)student.user_id);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("StudentDetails", student);
+            }
+            else
+            {
+                return View(student);
+            }
+        }
+
+
         public ActionResult FacultyList()
         {
             SQLService database = new SQLService();

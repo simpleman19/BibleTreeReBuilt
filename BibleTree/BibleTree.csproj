@@ -453,6 +453,7 @@
     <Content Include="Views\User\FacultyList.cshtml" />
     <Content Include="Views\Badges\StudentBadges.cshtml" />
     <Content Include="Views\User\StudentHome.cshtml" />
+    <Content Include="Views\User\StudentDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

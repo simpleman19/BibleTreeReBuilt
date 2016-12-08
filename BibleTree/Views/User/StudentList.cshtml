@@ -12,6 +12,7 @@
 <p>
     @Html.ActionLink("Add New", "AddStudent")
 </p>
+
 <table class="table" id="student_list">
     <thead>
         <tr>
@@ -54,7 +55,7 @@
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "EditStudent", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "StudentDetails", new { /* id=item.PrimaryKey */ }) |
+                    <a onclick="studentDetail(@item.user_id)">Details</a> |
                     @Html.ActionLink("Delete", "DeleteStudent", new { /* id=item.PrimaryKey */ })
                 </td>
             </tr>

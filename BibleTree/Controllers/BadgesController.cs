@@ -12,7 +12,7 @@ namespace BibleTree.Controllers
 {
     public class BadgesController : Controller
     {
-        public ActionResult BadgeTree()
+        public ActionResult BadgeTree(int? id)
         {
             // Row 100 use 6 and 7
             // Row 200 use 4, 6, 7
@@ -49,7 +49,17 @@ namespace BibleTree.Controllers
                 spaces.Remove(i);
             }
             SQLService db = new SQLService();
-            List<BadgeInstance> badges = db.GetUserAwards(1000);
+            User student = null;
+            if (id == null)
+            {
+                var user_name = User.Identity.Name;
+                student = db.GetActiveUserByEmail(user_name);
+            }
+            else
+            {
+                student = db.GetUserById((int)id);
+            }
+            List<BadgeInstance> badges = db.GetUserAwards((int)student.user_id);
             Random rnd = new Random();
             foreach(BadgeInstance inst in badges)
             {
@@ -217,20 +227,18 @@ namespace BibleTree.Controllers
                 return View(badgeList);
             }
         }
-        public ActionResult StudentBadges(int id)
+        public ActionResult StudentBadges(int? id)
         {
-            SQLService db = new SQLService();
-            Student student = new Student();
-
-            if (id != 0)
+            SQLService database = new SQLService();
+            User student = null;
+            if (id == null) { 
+                var user_name = User.Identity.Name;
+                student = database.GetActiveUserByEmail(user_name);
+            } else
             {
-                student = db.GetStudentById(id);
+                student = database.GetUserById((int)id);
             }
-            else
-            {
-                student = db.GetStudentById(1);
-            }
-
+            ViewBag.badges = database.GetUserAwards((int)student.user_id);
             if (Request.IsAjaxRequest())
             {
                 return PartialView("StudentBadges", student);
