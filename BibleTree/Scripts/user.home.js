@@ -88,7 +88,7 @@ function listBadges() {
 
 function listStudentBadges() {
     var button = "#buttonListBadges";
-    var url = '/badges/studentbadges/1';
+    var url = '/badges/studentbadges';
     changeView(url, button);
 }
 
