@@ -5,7 +5,6 @@ using Dapper;
 using Dapper.Contrib.Extensions;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text.RegularExpressions;
 using BibleTree.Models;
 
 namespace BibleTree.Services {
@@ -41,7 +40,7 @@ namespace BibleTree.Services {
 			//Resets entire database with fresh empty model
 			Drop();
 			Create();
-			return "success";
+			return "<span style='color:green'>success</span>";
 		}
 		public void Drop() {
 			using (var db = noDatabaseConnect()) {
@@ -400,9 +399,42 @@ namespace BibleTree.Services {
 				).AsList();
 			}
 		}
+		public List<BadgeInstance> GetActiveUserAwards(int user_id) {
+			using (var db = connect()) {
+				return db.Query<BadgeInstance, BadgeType, BadgeInstance>(ScriptService.Scripts["awardedbadge_getactivebyuserid"],
+					(a, b) => {
+						a.badge_type = b;
+						return a;
+					}, new { user_id = user_id },
+					splitOn: "badge_id"
+				).AsList();
+			}
+		}
 		public List<BadgeInstance> GetAwards() {
 			using (var db = connect()) {
 				return db.Query<BadgeInstance, BadgeType, BadgeInstance>(ScriptService.Scripts["awardedbadge_getall"],
+					(a, b) => {
+						a.badge_type = b;
+						return a;
+					},
+					splitOn: "badge_id"
+				).AsList();
+			}
+		}
+		public List<BadgeInstance> GetActiveAwards() {
+			using (var db = connect()) {
+				return db.Query<BadgeInstance, BadgeType, BadgeInstance>(ScriptService.Scripts["awardedbadge_getallactive"],
+					(a, b) => {
+						a.badge_type = b;
+						return a;
+					},
+					splitOn: "badge_id"
+				).AsList();
+			}
+		}
+		public List<BadgeInstance> GetDeactivatedAwards() {
+			using (var db = connect()) {
+				return db.Query<BadgeInstance, BadgeType, BadgeInstance>(ScriptService.Scripts["awardedbadge_getdeactivated"],
 					(a, b) => {
 						a.badge_type = b;
 						return a;
@@ -441,6 +473,5 @@ namespace BibleTree.Services {
 			}
 		}
 		#endregion
-
 	}
 }

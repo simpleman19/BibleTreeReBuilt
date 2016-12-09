@@ -4,7 +4,8 @@
 	[badge_id], 
 	[award_sentid], 
 	[award_timestamp], 
-	[award_comment]
+	[award_comment],
+	[award_active]
 )
 VALUES 
 (
@@ -12,5 +13,6 @@ VALUES
 	@badge_id,
 	@award_sentid,
 	@award_timestamp,
-	@award_comment
+	@award_comment,
+	1
 );
